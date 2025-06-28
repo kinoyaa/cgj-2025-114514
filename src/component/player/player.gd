@@ -40,7 +40,7 @@ func _keep_walk(delta):
 func move_toward_collide(direction: Vector2i, delta: float) -> void:
 	var target_coords = _local_to_tilemap() + direction
 	var target_position = tilemap.map_to_local(target_coords)
-	var room: Room = get_tree().current_scene.get_node_or_null("Room")
+	var room: Room = GameCore.now_action.room
 	if !Rect2i(room.position, room.size).has_point(target_position):
 		make_inside()
 		return
@@ -78,6 +78,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if state == State.WALKING:
 		_keep_walk(delta)
+		var cell_data = tilemap.get_cell_tile_data(_local_to_tilemap() + Vector2i.RIGHT)
+		if cell_data:
+			if cell_data.get_custom_data("type") == "carpet":
+				state = State.IDLE
+				make_inside()
 	else:
 		velocity = Vector2.ZERO
 

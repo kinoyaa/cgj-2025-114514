@@ -14,10 +14,10 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.84705883, 1, 1, 1, 0.7647059, 1
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_acnon")
-amount = 5
+amount = 6
 texture = ExtResource("1_63ec2")
-lifetime = 1.7
-speed_scale = 2.7
+lifetime = 3.0
+speed_scale = 3.0
 local_coords = true
 emission_shape = 3
 emission_rect_extents = Vector2(10, 70)

@@ -15,9 +15,9 @@ func _process(_delta: float) -> void:
 		sprite.frame = (sprite.frame + 1) % (sprite.hframes * sprite.vframes)
 
 func _physics_process(delta: float) -> void:
-	var player: CharacterBody2D = get_tree().current_scene.get_node_or_null("player")
-	var trap_layer: TileMapLayer = get_tree().current_scene.get_node_or_null("trapLayer")
-	var fan_coords: Vector2i = trap_layer.local_to_map(global_position)
+	var player: CharacterBody2D = GameCore.player
+	var obj_layer: TileMapLayer = GameCore.now_action.obj_layer
+	var fan_coords: Vector2i = obj_layer.local_to_map(global_position)
 	var rect: Rect2i
 	if direction == Vector2i.LEFT:
 		rect = Rect2i(fan_coords.x - 1, fan_coords.y, -radius, 1).abs()
@@ -30,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	if player != null:
 		var player_coords: Vector2i = player._local_to_tilemap()
 		var target_coords: Vector2i = player_coords + direction
-		var target_position: Vector2 = trap_layer.map_to_local(target_coords)
+		var target_position: Vector2 = obj_layer.map_to_local(target_coords)
 		var room: Room = get_tree().current_scene.get_node_or_null("Room")
 		if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
 			player.state = player.State.FLOATING
@@ -40,8 +40,11 @@ func _physics_process(delta: float) -> void:
 			player.state = player.State.WALKING
 			player.make_inside()
 			player_inside = false
-	if trap_layer != null:
-		for trap in trap_layer.get_children():
-			var trap_coords: Vector2i = trap_layer.local_to_map(trap.global_position)
-			if trap.get_script() in BLOWABLE && rect.has_point(trap_coords):
-				trap.move(direction)
+	if obj_layer != null:
+		for obj in obj_layer.get_children():
+			var obj_coords: Vector2i = obj_layer.local_to_map(obj.global_position)
+			if obj.get_script() in BLOWABLE && rect.has_point(obj_coords):
+				## 是可移动的物体
+				# CARPET
+				if obj.type != Carpet.CarpetType.EXPAND:
+					obj.move(direction,true)
