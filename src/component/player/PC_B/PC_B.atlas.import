@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://coyb5g07xife1"
+path="res://.godot/imported/PC_B.atlas-891c997e017122755aac38f88de2ed68.spatlas"
+
+[deps]
+
+source_file="res://src/component/player/PC_B/PC_B.atlas"
+dest_files=["res://.godot/imported/PC_B.atlas-891c997e017122755aac38f88de2ed68.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

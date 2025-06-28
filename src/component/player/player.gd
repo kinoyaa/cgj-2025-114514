@@ -19,22 +19,25 @@ enum State {
 	FLOATING,
 }
 
+var last_walk_direction: Vector2i = Vector2i.RIGHT  # 记录最后行走方向
+
 @export var state: State = State.IDLE:
 	set(new_state):
 		if state == State.WALKING && new_state != State.WALKING:
 			make_inside()
 			step_trigger.emit()
+		elif new_state == State.WALKING:
+			last_walk_direction = current_direction  # 进入行走状态时记录方向
 		state = new_state
 
 @onready var pc_r: SpineSprite = %pc_r
 @onready var pc_f: SpineSprite = %pc_f
 @onready var pc_b: SpineSprite = %pc_b
 
-# 动画控制变量
-var current_spine: SpineSprite = pc_r
+# Animations
+@onready var current_spine: SpineSprite = pc_r
 var current_anim_name: String = ""
 var current_direction: Vector2i = Vector2i.ZERO
-var last_shown_sprite: SpineSprite = null  # 记录当前显示的sprite
 
 
 func _ready() -> void:
@@ -54,9 +57,11 @@ func _physics_process(delta: float) -> void:
 		if cell_data and cell_data.get_custom_data("type") == "carpet":
 			state = State.IDLE
 			make_inside()
-	else:
+	elif state == State.IDLE && current_anim_name != "Idle":
+		# 只在需要时设置空闲动画
 		set_anim(Vector2i.ZERO, "Idle")
 		velocity = Vector2.ZERO
+	queue_redraw()
 
 func _keep_walk(delta):
 	if state != State.WALKING:
@@ -83,63 +88,41 @@ func move_toward_collide(direction: Vector2i, delta: float) -> void:
 	set_anim(direction, "Walk")
 	move_and_collide(velocity)
 
+
+
 func set_anim(direction: Vector2i, anim_name: String):
 	if direction == current_direction and anim_name == current_anim_name:
 		return  # 避免重复设置相同的动画
 	
-	# 确保方向有效
-	var valid_direction = direction
-	if direction not in [Vector2i.RIGHT, Vector2i.LEFT, Vector2i.UP, Vector2i.DOWN]:
-		valid_direction = Vector2i.ZERO
-	
-	# 调试信息：打印方向和调用栈
-	print("方向: ", valid_direction, " | 调用来源: ", 
-		"物理过程" if state == State.WALKING else 
-		"空闲状态" if state == State.IDLE else 
-		"漂浮状态")
-	
-	current_direction = valid_direction
+	current_direction = direction
 	current_anim_name = anim_name
-	_apply_direction_sprite(valid_direction)
-	call_deferred("switch_anim", current_spine, anim_name)
+	_apply_direction_sprite(direction)
+	switch_anim(current_spine, anim_name)
 
 func _apply_direction_sprite(direction: Vector2i):
-	var target_sprite: SpineSprite = pc_r
-	var need_update = false
+	# 先全部隐藏
+	pc_r.visible = false
+	pc_f.visible = false
+	pc_b.visible = false
 	
-	# 确定目标sprite和是否需要更新
 	match direction:
 		Vector2i.RIGHT:
-			target_sprite = pc_r
+			current_spine = pc_r
 			pc_r.scale.x = abs(pc_r.scale.x)
-			if last_shown_sprite != pc_r:
-				need_update = true
+			pc_r.visible = true
 		Vector2i.LEFT:
-			target_sprite = pc_r
+			current_spine = pc_r
 			pc_r.scale.x = -abs(pc_r.scale.x)
-			if last_shown_sprite != pc_r:
-				need_update = true
+			pc_r.visible = true
 		Vector2i.UP:
-			target_sprite = pc_b
-			if last_shown_sprite != pc_b:
-				need_update = true
+			current_spine = pc_b
+			pc_b.visible = true
 		Vector2i.DOWN:
-			target_sprite = pc_f
-			if last_shown_sprite != pc_f:
-				need_update = true
-		_:  # 默认情况
-			target_sprite = pc_r
-			if last_shown_sprite != pc_r:
-				need_update = true
-	
-	# 只有需要更新时才执行显隐操作
-	if need_update:
-		if last_shown_sprite:
-			last_shown_sprite.call_deferred("hide")
-		target_sprite.call_deferred("show")
-		last_shown_sprite = target_sprite
-	
-	current_spine = target_sprite
+			current_spine = pc_f
+			pc_f.visible = true
+		_:  # 默认情况（如Vector2i.ZERO）
+			current_spine = pc_r
+			pc_r.visible = true
 
 func switch_anim(spine_sprite: SpineSprite, anim_name: String):
 	var animation_state = spine_sprite.get_animation_state()
@@ -147,9 +130,6 @@ func switch_anim(spine_sprite: SpineSprite, anim_name: String):
 	
 	if not current or current.get_animation().get_name() != anim_name:
 		animation_state.set_animation(anim_name)
-	
-	if debug_draw:
-		queue_redraw()
 
 func _draw():
 	if not debug_draw:
@@ -168,23 +148,11 @@ func _draw():
 		Vector2i.DOWN: dir_text += "下"
 		_: dir_text += "无"
 	
-	# 当前显示的sprite
-	var sprite_text = "显示: "
-	if last_shown_sprite == pc_r:
-		sprite_text += "pc_r"
-	elif last_shown_sprite == pc_f:
-		sprite_text += "pc_f"
-	elif last_shown_sprite == pc_b:
-		sprite_text += "pc_b"
-	else:
-		sprite_text += "无"
-	
 	# 动画状态
 	var anim_text = "动画: " + current_anim_name
 	
 	# 绘制文本
 	draw_string(ThemeDB.fallback_font, pos, dir_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, color)
-	draw_string(ThemeDB.fallback_font, pos + Vector2(0, 20), sprite_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, color)
 	draw_string(ThemeDB.fallback_font, pos + Vector2(0, 40), anim_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, color)
 
 func make_inside():
