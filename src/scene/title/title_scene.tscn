@@ -1,0 +1,137 @@
+[gd_scene load_steps=6 format=3 uid="uid://f4jpf1a1j1wi"]
+
+[ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
+[ext_resource type="Texture2D" uid="uid://c7ikpjwkvlxhf" path="res://src/assets/imgs/title_scene/light.png" id="2_ihmu6"]
+[ext_resource type="Texture2D" uid="uid://v5bxnlkap8jg" path="res://src/assets/imgs/title_scene/person.png" id="3_fe6da"]
+[ext_resource type="Script" uid="uid://dl30uonkp0jqd" path="res://src/scene/title/lerp_effect.gd" id="4_2051b"]
+[ext_resource type="Script" uid="uid://cl673giljo3qc" path="res://src/scene/title/setting_popup.gd" id="5_ihmu6"]
+
+[node name="title_scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg_layer" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="bg_tex_rect" type="TextureRect" parent="bg_layer"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = ExtResource("1_7ipjn")
+
+[node name="mid_layer" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="light_tex_rect" type="TextureRect" parent="mid_layer"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = ExtResource("2_ihmu6")
+
+[node name="front_layer" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="person_tex_rect" type="TextureRect" parent="front_layer"]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = ExtResource("3_fe6da")
+
+[node name="lerp_effect" type="Control" parent="." node_paths=PackedStringArray("bg_node", "mid_node", "front_node")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_2051b")
+bg_node = NodePath("../bg_layer")
+mid_node = NodePath("../mid_layer")
+front_node = NodePath("../front_layer")
+
+[node name="setting_popup" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_ihmu6")
+
+[node name="panel" type="Panel" parent="setting_popup"]
+custom_minimum_size = Vector2(320, 220)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -110.0
+offset_right = 160.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="close_btn" type="TextureButton" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="sound_slider" type="HSlider" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = -24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01000000000931322
+
+[node name="music_slider" type="HSlider" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = -24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01000000000931322
+
+[node name="apply_btn" type="TextureButton" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="pressed" from="setting_popup/panel/close_btn" to="setting_popup" method="_on_close_btn_pressed"]
+[connection signal="pressed" from="setting_popup/panel/apply_btn" to="setting_popup" method="_on_apply_btn_pressed"]
