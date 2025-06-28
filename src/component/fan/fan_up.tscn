@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhkecru4ccueg"]
+
+[ext_resource type="Script" uid="uid://bhn1ta2ccdhdu" path="res://src/component/fan/fan.gd" id="1_22bw6"]
+[ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_b4xpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_22bw6"]
+size = Vector2(64, 384)
+
+[node name="FanUp" type="Node2D"]
+script = ExtResource("1_22bw6")
+direction = Vector2i(0, -1)
+metadata/_custom_type_script = "uid://bhn1ta2ccdhdu"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b4xpo")
+region_enabled = true
+region_rect = Rect2(384, 128, 128, 128)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -192)
+shape = SubResource("RectangleShape2D_22bw6")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

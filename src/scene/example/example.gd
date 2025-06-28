@@ -18,7 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	queue_redraw()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		if event.is_pressed():
 			_clicked_coord = tilemap.local_to_map(get_global_mouse_position())

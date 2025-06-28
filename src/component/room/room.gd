@@ -1,10 +1,6 @@
 @tool
 class_name Room extends StaticBody2D
 
-@export var tilemap : TileMapLayer
-
-@export var tile_size = 128
-
 @export var size: Vector2i = Vector2i(1024, 1024):
 	set(new_size):
 		size = new_size
@@ -29,7 +25,6 @@ func _ready() -> void:
 	shape_owner_add_shape(shape_owner_down, bound_down)
 	shape_owner_set_transform(shape_owner_right, Transform2D(0, Vector2(size.x, 0)))
 	shape_owner_set_transform(shape_owner_down, Transform2D(0, Vector2(0, size.y)))
-	size = tilemap.get_used_rect().size * tile_size
 
 func _draw() -> void:
 	var rect := Rect2(Vector2(0, 0), size)

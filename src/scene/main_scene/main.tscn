@@ -1,0 +1,187 @@
+[gd_scene load_steps=10 format=3 uid="uid://cq172ohp7raos"]
+
+[ext_resource type="PackedScene" uid="uid://cmr0ldbxnrb8s" path="res://src/scene/example/example.tscn" id="1_6pe3w"]
+[ext_resource type="Shader" uid="uid://ckig6h50hsici" path="res://src/scene/main_scene/horror.gdshader" id="1_giqa4"]
+[ext_resource type="Script" uid="uid://dhbxvg36y8pfd" path="res://addons/richtext2/text_effects/effects/rte_curspull.gd" id="3_giqa4"]
+[ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="5_1p2jo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_giqa4"]
+frequency = 0.036
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1p2jo"]
+noise = SubResource("FastNoiseLite_giqa4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giqa4"]
+shader = ExtResource("1_giqa4")
+shader_parameter/color_bleed_enabled = true
+shader_parameter/chromatic_abberation_enabled = true
+shader_parameter/film_grain_enabled = true
+shader_parameter/sharpness_enabled = true
+shader_parameter/chromatic_abberation_seperation = 0.016
+shader_parameter/chromatic_abberation_intensity = 1.5
+shader_parameter/chromatic_abberation_blur_strength = 1.0
+shader_parameter/film_grain_noise = SubResource("NoiseTexture2D_1p2jo")
+shader_parameter/film_grain_intensity = 1.0
+shader_parameter/grain_size = 2.0
+shader_parameter/darkness_clamp = 0.28
+shader_parameter/sharpness_size = 1.0
+shader_parameter/sharpness_intensity = 0.7
+shader_parameter/color_bleed_seperation = 0.02
+shader_parameter/color_bleed_intensity = 0.2
+shader_parameter/anti_bleed_intensity = 0.0
+shader_parameter/color_bleed_blur_strength = 1.0
+shader_parameter/color_bleed_quality = 5
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_giqa4"]
+resource_name = "curspull"
+script = ExtResource("3_giqa4")
+metadata/rt = 2932070249182
+
+[sub_resource type="Environment" id="Environment_csug5"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_intensity = 5.1
+glow_strength = 1.25
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -334.0
+offset_right = 480.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(960, 560)
+render_target_update_mode = 4
+
+[node name="Example" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_6pe3w")]
+
+[node name="color" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_giqa4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="RicherTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/normal_font_size = 66
+theme_override_font_sizes/bold_font_size = 66
+theme_override_font_sizes/bold_italics_font_size = 66
+theme_override_font_sizes/italics_font_size = 66
+theme_override_font_sizes/mono_font_size = 66
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_giqa4")]
+script = ExtResource("5_1p2jo")
+bbcode = "[curspull pull=-3]第一关"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "songti"
+font_auto_setup = true
+font_size = 66
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 2
+outline_mode = 2
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+image_path = "res://"
+image_resize_to_font_size = true
+image_scale = 1.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+metadata/_custom_type_script = "uid://2f4fi75scxes"
+metadata/mouse_position = Vector2(881.5594, 177.48999)
+metadata/frame = 12415
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_csug5")
