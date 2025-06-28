@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cmr0ldbxnrb8s"]
+[gd_scene load_steps=7 format=4 uid="uid://cmr0ldbxnrb8s"]
 
 [ext_resource type="PackedScene" uid="uid://co0sgbpfvqje2" path="res://src/component/player/player.tscn" id="1_cf133"]
 [ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_cx7bj"]
 [ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="4_5i3b0"]
+[ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://src/component/room/room.gd" id="4_lcd7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lcd7o"]
 texture = ExtResource("4_5i3b0")
@@ -69,3 +70,7 @@ limit_right = 1790
 limit_bottom = 1020
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="Room" type="StaticBody2D" parent="."]
+script = ExtResource("4_lcd7o")
+metadata/_custom_type_script = "uid://d3q036pdl3epk"

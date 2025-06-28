@@ -29,7 +29,7 @@ func _ready() -> void:
 func _draw() -> void:
 	var rect := Rect2(Vector2(0, 0), size)
 	var box := StyleBoxTexture.new()
-	box.texture = preload("res://resource/level/shadow.png")
+	box.texture = preload("res://src/assets/imgs/shadow.png")
 	box.texture_margin_left = 256
 	box.texture_margin_right = 256
 	box.texture_margin_top = 256
