@@ -1,0 +1,47 @@
+[
+  {
+    "name": "substitutes",
+    "suffix": "png",
+    "type": 0,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "pan",
+    "suffix": "png",
+    "type": 0,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "mucus",
+    "suffix": "png",
+    "type": 0,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "salt",
+    "suffix": "png",
+    "type": 0,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "name": "amour",
+    "suffix": "png",
+    "type": 1,
+    "offset": [
+      0,
+      0
+    ]
+  }
+]

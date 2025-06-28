@@ -1,0 +1,54 @@
+[
+  {
+    "name": "钝器效果",
+    "constitution": -0.8,
+    "magic_constitution": -0.8,
+    "metal": -0.2,
+    "wood": -0.1,
+    "water": -0.2,
+    "fire": -0.5,
+    "wind": -0.2,
+    "lightning": 0,
+    "artificial": -1,
+    "description": ""
+  },
+  {
+    "name": "锐器效果",
+    "constitution": -1,
+    "magic_constitution": -0.5,
+    "metal": -0.1,
+    "wood": -0.5,
+    "water": 0,
+    "fire": 0,
+    "wind": 0,
+    "lightning": 0,
+    "artificial": -0.8,
+    "description": ""
+  },
+  {
+    "name": "汤水效果",
+    "constitution": -0.5,
+    "magic_constitution": -0.2,
+    "metal": -1,
+    "wood": -0.3,
+    "water": 1.5,
+    "fire": -2,
+    "wind": -0.2,
+    "lightning": 0,
+    "artificial": -1,
+    "description": ""
+  },
+  {
+    "name": "魔法效果",
+    "constitution": -1,
+    "magic_constitution": 0.5,
+    "metal": -1,
+    "wood": -1,
+    "water": -1,
+    "fire": -1,
+    "wind": -1,
+    "lightning": -1,
+    "artificial": 0,
+    "description": ""
+  }
+]

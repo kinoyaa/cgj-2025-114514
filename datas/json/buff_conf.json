@@ -1,0 +1,17 @@
+[
+  {
+    "name": "dehydration",
+    "alias": "脱水",
+    "overlay": true,
+    "overlay_layer": 5,
+    "layer_variation": "-1",
+    "precondation": [],
+    "effect": [
+      [
+        "altHP",
+        "-2%"
+      ]
+    ],
+    "description": ""
+  }
+]

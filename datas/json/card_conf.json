@@ -1,0 +1,792 @@
+[
+  {
+    "id": "A0001",
+    "name": "salt",
+    "alias": "盐",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "咸",
+        "调料"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "为任何料理增添一抹鲜美的风味，提升食材的天然味道。"
+  },
+  {
+    "id": "A0002",
+    "name": "oil",
+    "alias": "油脂",
+    "type": 0,
+    "quality": 0,
+    "tags": [
+      "oil"
+    ],
+    "use_target": [
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "油"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "烹饪的基础，赋予食物丰富的口感和诱人的香气。"
+  },
+  {
+    "id": "A0003",
+    "name": "suger",
+    "alias": "糖",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "甜"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "甜蜜的调料，适用于各种甜品和饮品，带来愉悦的口感体验。"
+  },
+  {
+    "id": "A0004",
+    "name": "ice",
+    "alias": "冰",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "冰"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "冷却任何饮品或食物，保持清凉和新鲜的口感。"
+  },
+  {
+    "id": "A0005",
+    "name": "water",
+    "alias": "一杯水",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "淡"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "基本液体，适合用于烹饪、调配或作为饮用水。"
+  },
+  {
+    "id": "A0006",
+    "name": "mucus",
+    "alias": "史莱姆粘液",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "生"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "神秘而滑腻的物质，能为菜肴增添奇特的口感和外观。"
+  },
+  {
+    "id": "A0007",
+    "name": "scorpion_meat",
+    "alias": "蝎子肉",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "肉"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "富含蛋白质的异域食材，具有独特的风味和嚼劲。"
+  },
+  {
+    "id": "A0008",
+    "name": "suger_water",
+    "alias": "糖水",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": ""
+  },
+  {
+    "id": "A0009",
+    "name": "slime_glue",
+    "alias": "史莱姆胶质",
+    "type": 0,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "生"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "富有弹性的物质，可用于制作各种创新甜品和点心。"
+  },
+  {
+    "id": "A0010",
+    "name": "egg",
+    "alias": "鸡蛋",
+    "type": 0,
+    "quality": 0,
+    "tags": [
+      "egg"
+    ],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": true,
+      "taste_tags": [
+        "生"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "多用途的基本食材，用于烘焙、煎炒和制作各种美食。"
+  },
+  {
+    "id": "A0011",
+    "name": "duck_egg",
+    "alias": "鸭蛋",
+    "type": 0,
+    "quality": 1,
+    "tags": [
+      "egg"
+    ],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "多用途的基本食材，用于烘焙、煎炒和制作各种美食。"
+  },
+  {
+    "id": "A0012",
+    "name": "fried_egg",
+    "alias": "煎蛋",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": false,
+      "taste_tags": [
+        "简餐"
+      ],
+      "utils_tags": [
+        "B0002",
+        "magic_baking_pan",
+        "handled_magic_furnace"
+      ],
+      "recipe": [
+        "oil*",
+        "egg*"
+      ],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "经典的早餐美食，外脆内嫩，搭配各种佐料更美味。"
+  },
+  {
+    "id": "A0013",
+    "name": "fried_slime",
+    "alias": "史莱姆软糖",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": false,
+      "taste_tags": [
+        "甜"
+      ],
+      "utils_tags": [
+        "B0002",
+        "magic_baking_pan",
+        "handled_magic_furnace"
+      ],
+      "recipe": [
+        "oil*",
+        "A0006"
+      ],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "色彩鲜艳、口感独特的甜品，带来甜蜜的乐趣和趣味。"
+  },
+  {
+    "id": "A0014",
+    "name": "slime_ice_jelly",
+    "alias": "史莱姆冰粉",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": false,
+      "taste_tags": [
+        "凉菜",
+        "冰",
+        "甜"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "滑嫩的甜点，带有冰凉的口感和奇特的风味。"
+  },
+  {
+    "id": "A0015",
+    "name": "fried_scorpion_meat",
+    "alias": "烤蝎子肉",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "food_card": {
+      "is_raw_material": false,
+      "taste_tags": [
+        "肉",
+        "咸"
+      ],
+      "utils_tags": [],
+      "recipe": [],
+      "self_trigger_buff": [],
+      "enemy_trigger_buff": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "经过香煎的蝎子肉，外脆内嫩，散发诱人的香气。"
+  },
+  {
+    "id": "A0016",
+    "name": "wild_mushroom",
+    "alias": "野生蘑菇",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "野外生长的蘑菇，富含营养"
+  },
+  {
+    "id": "A0017",
+    "name": "fire_fruit",
+    "alias": "火果",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "热带风味的果实，带有微辣的味道"
+  },
+  {
+    "id": "A0018",
+    "name": "mountain_water",
+    "alias": "山泉水",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "清澈的山泉水，口感清新"
+  },
+  {
+    "id": "A0019",
+    "name": "hunter_meat",
+    "alias": "猎肉",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "野生猎物的肉，肉质鲜美"
+  },
+  {
+    "id": "A0020",
+    "name": "mountain_onion",
+    "alias": "山葱",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "狂野生长的葱，味道浓郁"
+  },
+  {
+    "id": "A0021",
+    "name": "wheat",
+    "alias": "小麦",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "基本的谷物，制作面食的原料"
+  },
+  {
+    "id": "A0022",
+    "name": "thorn_leaves",
+    "alias": "刺叶",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "带有苦味的野生植物叶子"
+  },
+  {
+    "id": "A0023",
+    "name": "aged_cheese",
+    "alias": "熟成奶酪",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "熟成的奶酪，口感独特"
+  },
+  {
+    "id": "A0024",
+    "name": "exotic_bird_meat",
+    "alias": "奇异鸟肉",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "奇异禽类的肉，味道鲜美"
+  },
+  {
+    "id": "A0025",
+    "name": "fire_spice",
+    "alias": "辛辣香料",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      1,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "烹饪中添加的辛辣调料"
+  },
+  {
+    "id": "B0001",
+    "name": "knife",
+    "alias": "主厨刀",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "对于厨师来说最基础的厨具，用于去皮和切菜，必要的时候也可以用来防身，每把主厨刀都是由当地铁匠倾心制作，品质上绝对和退敌用的武器不相上下。"
+  },
+  {
+    "id": "B0002",
+    "name": "pan",
+    "alias": "平底锅",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "tool_card": {
+      "slot": [
+        1,
+        4
+      ],
+      "fuel": []
+    },
+    "run_func": [],
+    "run_script": "",
+    "description": "用于煎炒食材的厨房工具，能均匀受热，打造美味佳肴。"
+  },
+  {
+    "id": "B0003",
+    "name": "handled_furnace",
+    "alias": "长柄炉",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "随身长柄炉是把万用器材！"
+  },
+  {
+    "id": "B0004",
+    "name": "grill",
+    "alias": "烧烤架",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 2,
+    "run_func": [],
+    "run_script": "",
+    "description": "为食物增添独特的烧烤风味，适合烤制各种肉类和蔬菜。"
+  },
+  {
+    "id": "B0005",
+    "name": "rolling_pin",
+    "alias": "擀面杖",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "用于将面团擀平的工具，制作各种面点和糕点。"
+  },
+  {
+    "id": "B0006",
+    "name": "magic_baking_pan",
+    "alias": "魔法饼铛",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "神秘的烹饪工具，可制作各种特殊的饼干和煎饼。"
+  },
+  {
+    "id": "B0007",
+    "name": "handled_magic_furnace",
+    "alias": "长柄魔法炉",
+    "type": 1,
+    "quality": 0,
+    "tags": [],
+    "use_target": [
+      0,
+      2
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "强大的烹饪器具，用于快速加热和制作魔法菜肴。"
+  },
+  {
+    "id": "C0001",
+    "name": "frozen_magic",
+    "alias": "冰冻魔法",
+    "type": 2,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0,
+      3
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "施展冰冻魔法，将食材冷冻，创造清凉的美食体验，也可以冻结敌人。"
+  },
+  {
+    "id": "D0001",
+    "name": "wood_charcoal",
+    "alias": "木炭",
+    "type": 3,
+    "quality": 0,
+    "tags": [
+      "fuel"
+    ],
+    "use_target": [
+      0,
+      3
+    ],
+    "cost": 1,
+    "run_func": [],
+    "run_script": "",
+    "description": "常用的基础燃料，可以通过烧制木头获得"
+  },
+  {
+    "id": "X000",
+    "name": "debug_target_enemy",
+    "alias": "对敌",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      0
+    ],
+    "cost": 0,
+    "run_func": [],
+    "run_script": "",
+    "description": ""
+  },
+  {
+    "id": "X001",
+    "name": "debug_target_friend",
+    "alias": "对友",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      1
+    ],
+    "cost": 0,
+    "run_func": [],
+    "run_script": "",
+    "description": ""
+  },
+  {
+    "id": "X002",
+    "name": "debug_target_card",
+    "alias": "对牌",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      2
+    ],
+    "cost": 0,
+    "run_func": [],
+    "run_script": "",
+    "description": ""
+  },
+  {
+    "id": "X003",
+    "name": "debug_target_direct_use",
+    "alias": "直接使用",
+    "type": 0,
+    "quality": 1,
+    "tags": [],
+    "use_target": [
+      3
+    ],
+    "cost": 0,
+    "run_func": [],
+    "run_script": "",
+    "description": ""
+  }
+]

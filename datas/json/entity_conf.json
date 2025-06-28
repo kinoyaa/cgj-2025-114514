@@ -1,0 +1,31 @@
+[
+  {
+    "name": "slime",
+    "alias": "粘液史莱姆",
+    "faction": 0,
+    "element": 4,
+    "hp_set": [
+      [
+        "magic_constitution",
+        65
+      ],
+      [
+        "\nwater",
+        35
+      ]
+    ],
+    "resistance_set": [],
+    "vp": 100,
+    "description": ""
+  },
+  {
+    "name": "slime_poisonous",
+    "alias": "毒史莱姆",
+    "faction": 0,
+    "element": 0,
+    "hp_set": [],
+    "resistance_set": [],
+    "vp": 0,
+    "description": ""
+  }
+]
