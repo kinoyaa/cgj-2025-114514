@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 # 落脚时触发的信号
 signal step_trigger
+signal step_over
 
 enum State {
 	IDLE,
@@ -14,7 +15,7 @@ enum State {
 	FLOATING,
 }
 
-var state: State = State.IDLE:
+@export var state: State = State.IDLE:
 	set(new_state):
 		if state == State.WALKING && new_state != State.WALKING:
 			make_inside()
@@ -46,11 +47,11 @@ func make_inside():
 	t.tween_property(
 		self,"position",tilemap.map_to_local(_local_to_tilemap()),0.15
 		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	t.tween_callback(func(): step_over.emit())
 
 #region overrides
 func _ready() -> void:
-	if !tilemap:
-		assert(true,"请分配tilemap!")
+	assert(tilemap,"请分配tilemap!")
 	make_inside()
 
 func _unhandled_input(event: InputEvent) -> void:
