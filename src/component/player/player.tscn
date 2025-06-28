@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://co0sgbpfvqje2"]
+[gd_scene load_steps=9 format=3 uid="uid://co0sgbpfvqje2"]
 
 [ext_resource type="Script" uid="uid://w5mqubxo15mg" path="res://src/component/player/player.gd" id="1_82t4o"]
 [ext_resource type="SpineAtlasResource" uid="uid://sktyujbwpvxw" path="res://src/component/player/PC_R/PC_R.atlas" id="2_35mc4"]
 [ext_resource type="SpineSkeletonFileResource" uid="uid://cepm4rhkv652q" path="res://src/component/player/PC_R/PC_R.skel" id="3_t4c0r"]
+[ext_resource type="SpineAtlasResource" uid="uid://qxdwqg6wu71v" path="res://src/component/player/PC_F/PC_F.atlas" id="4_2mffd"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dy80au61jwmdk" path="res://src/component/player/PC_F/PC_F.skel" id="5_tjnx6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmvh6"]
 radius = 37.0
@@ -11,6 +13,10 @@ radius = 37.0
 atlas_res = ExtResource("2_35mc4")
 skeleton_file_res = ExtResource("3_t4c0r")
 default_mix = 0.5
+
+[sub_resource type="SpineSkeletonDataResource" id="SpineSkeletonDataResource_l52oo"]
+atlas_res = ExtResource("4_2mffd")
+skeleton_file_res = ExtResource("5_tjnx6")
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 3
@@ -22,9 +28,30 @@ script = ExtResource("1_82t4o")
 shape = SubResource("CircleShape2D_wmvh6")
 disabled = true
 
-[node name="SpineSprite" type="SpineSprite" parent="."]
+[node name="pc_r" type="SpineSprite" parent="."]
 skeleton_data_res = SubResource("SpineSkeletonDataResource_2mffd")
 preview_skin = "Default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+unique_name_in_owner = true
+
+[node name="pc_f" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_l52oo")
+preview_skin = "Default"
+preview_animation = "Idle"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+
+[node name="pc_b" type="SpineSprite" parent="."]
+skeleton_data_res = SubResource("SpineSkeletonDataResource_l52oo")
+preview_skin = "Default"
+preview_animation = "Idle"
+preview_frame = false
+preview_time = 0.0
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true

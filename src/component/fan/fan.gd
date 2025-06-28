@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		var player_coords: Vector2i = player._local_to_tilemap()
 		var target_coords: Vector2i = player_coords + direction
 		var target_position: Vector2 = obj_layer.map_to_local(target_coords)
-		var room: Room = get_tree().current_scene.get_node_or_null("Room")
+		var room: Room = GameCore.now_action.room
 		if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
 			player.state = player.State.FLOATING
 			player.move_toward_collide(direction, delta)

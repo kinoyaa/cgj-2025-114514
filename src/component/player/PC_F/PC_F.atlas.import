@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://qxdwqg6wu71v"
+path="res://.godot/imported/PC_F.atlas-c598f0f0438207b3125bb95b9ac4f303.spatlas"
+
+[deps]
+
+source_file="res://src/component/player/PC_F/PC_F.atlas"
+dest_files=["res://.godot/imported/PC_F.atlas-c598f0f0438207b3125bb95b9ac4f303.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"
