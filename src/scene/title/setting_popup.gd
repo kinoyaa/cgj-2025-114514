@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 
 
@@ -24,11 +24,14 @@ func close():
 	hide()
 
 func update_volume():
-	sound_slider.value
-	music_slider.value
+	sound_slider.value = volume_setting.get_group_volume(volume_setting.SOUND_GROUP)
+	music_slider.value = volume_setting.get_group_volume(volume_setting.MUSIC_GROUP)
 
 func _on_close_btn_pressed() -> void:
 	close()
 
 func _on_apply_btn_pressed() -> void:
 	close()
+	
+	volume_setting.set_group_volume(volume_setting.SOUND_GROUP, sound_slider.value)
+	volume_setting.set_group_volume(volume_setting.MUSIC_GROUP, music_slider.value)
