@@ -7,6 +7,7 @@ static var UNPASSABLE := [Fan]
 
 # 配置参数
 @export var speed: float = 200.0
+@export var action: Node
 @export var tilemap: TileMapLayer
 
 # 信号
@@ -53,10 +54,16 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if state == State.WALKING:
 		_keep_walk(delta)
+		# 右侧障碍物检测
 		var cell_data = tilemap.get_cell_tile_data(_local_to_tilemap() + Vector2i.RIGHT)
 		if cell_data and cell_data.get_custom_data("type") == "carpet":
 			state = State.IDLE
 			make_inside()
+		for node : Node2D in action.fan_blow_able:
+			if _local_to_tilemap() + Vector2i.RIGHT == tilemap.local_to_map(node.global_position):
+				if node.type != Fan.Carpet.CarpetType.EXPAND:
+					state = State.IDLE
+					make_inside()
 	elif state == State.IDLE && current_anim_name != "Idle":
 		# 只在需要时设置空闲动画
 		set_anim(Vector2i.ZERO, "Idle")

@@ -22,7 +22,7 @@ const CARPET_VERTICAL = Vector2i(1,1)
 const CARPET_HORIZONTAL = Vector2i(2,1)
 
 # 可被吹动的物品池
-var fan_blow_able : Array
+var fan_blow_able : Array = []
 
 func _ready() -> void:
 	if !player and !obj_layer:
