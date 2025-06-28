@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0vbvv3hoiyiq" path="res://src/component/carpet/carpet.gd" id="1_ob6w6"]
 [ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_414lr"]
 
-[node name="Carpet" type="Node2D"]
+[node name="Carpet" type="Node2D" groups=["Carpet"]]
 script = ExtResource("1_ob6w6")
 
 [node name="sprite" type="Sprite2D" parent="."]

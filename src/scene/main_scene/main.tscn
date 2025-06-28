@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq172ohp7raos"]
+[gd_scene load_steps=10 format=3 uid="uid://cq172ohp7raos"]
 
 [ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_1p2jo"]
 [ext_resource type="PackedScene" uid="uid://cmr0ldbxnrb8s" path="res://src/scene/example/example.tscn" id="1_6pe3w"]
 [ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="2_giqa4"]
 [ext_resource type="Script" uid="uid://dhbxvg36y8pfd" path="res://addons/richtext2/text_effects/effects/rte_curspull.gd" id="3_giqa4"]
 [ext_resource type="Script" uid="uid://2f4fi75scxes" path="res://addons/richtext2/richer_text_label.gd" id="5_1p2jo"]
+[ext_resource type="PackedScene" uid="uid://n4fpt6hnh0cc" path="res://src/ui/gameover_transition/gameover_transition.tscn" id="7_01q62"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
 shader = ExtResource("2_giqa4")
@@ -14,10 +15,10 @@ shader_parameter/circle_position = Vector2(0.5, 0.5)
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_1p2jo"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_n3shp"]
 resource_name = "curspull"
 script = ExtResource("3_giqa4")
-metadata/rt = 35631854139235
+metadata/rt = 13065441635388
 
 [sub_resource type="Environment" id="Environment_csug5"]
 background_mode = 3
@@ -26,7 +27,7 @@ glow_enabled = true
 glow_intensity = 5.1
 glow_strength = 1.25
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("level_vp", "gameover_transition")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +35,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1p2jo")
+level_vp = NodePath("SubViewportContainer/level_vp")
+gameover_transition = NodePath("CanvasLayer/gameover_transition")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -60,12 +63,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="level_vp" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(960, 560)
 render_target_update_mode = 4
 
-[node name="Example" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_6pe3w")]
+[node name="Example" parent="SubViewportContainer/level_vp" instance=ExtResource("1_6pe3w")]
 
 [node name="cover_effect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -89,7 +92,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -112.0
+offset_top = -131.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -113,7 +117,7 @@ theme_override_font_sizes/mono_font_size = 66
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
-custom_effects = [SubResource("RichTextEffect_1p2jo")]
+custom_effects = [SubResource("RichTextEffect_n3shp")]
 script = ExtResource("5_1p2jo")
 bbcode = "[curspull pull=-3]第一关"
 effects = 2
@@ -165,8 +169,12 @@ override_bbcodeEnabled = true
 override_clipContents = false
 override_fitContent = true
 metadata/_custom_type_script = "uid://2f4fi75scxes"
-metadata/mouse_position = Vector2(842.9402, -83.71741)
-metadata/frame = 226194
+metadata/mouse_position = Vector2(510.58392, -171.29895)
+metadata/frame = 196052
+
+[node name="gameover_transition" parent="CanvasLayer" instance=ExtResource("7_01q62")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")
+
+[connection signal="gameover" from="SubViewportContainer/level_vp/Example" to="." method="_on_example_gameover"]

@@ -1,5 +1,8 @@
 extends Node2D
 
+signal won
+signal gameover
+
 @export var player: CharacterBody2D  # 引用player节点
 
 @export var background_layer : TileMapLayer
@@ -30,6 +33,8 @@ func _ready() -> void:
 	GameCore.now_action = self
 	_connect_signal()
 	set_process(true)
+	
+	player.died.connect(_on_player_died)
 
 func _connect_signal():
 	# FAN 可被吹动
@@ -44,6 +49,23 @@ func _connect_signal():
 
 func _process(delta: float) -> void:
 	queue_redraw()
+	
+	var playerMapPos = player._local_to_tilemap()
+	var tileData = trap_layer.get_cell_tile_data(playerMapPos)
+	if tileData != null:
+		if tileData.get_custom_data("type") == "trap":
+			var find := false
+			for carpet in get_tree().get_nodes_in_group("Carpet"):
+				if carpet._local_to_tilemap() != playerMapPos:
+					continue
+				
+				if carpet.type == carpet.CarpetType.EXPAND:
+					find = true
+					break
+			
+			if !find:
+				player.die()
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
@@ -142,3 +164,7 @@ func get_grid_direction(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i
 		return Vector2.UP
 	else:
 		return Vector2.ZERO
+
+
+func _on_player_died() -> void:
+	gameover.emit()

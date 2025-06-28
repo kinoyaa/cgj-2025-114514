@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 static var UNPASSABLE := [Fan]
 
+signal died
+
 # 调试开关
 @export var debug_draw: bool = true
 
@@ -40,6 +42,7 @@ var last_walk_direction: Vector2i = Vector2i.RIGHT  # 记录最后行走方向
 var current_anim_name: String = ""
 var current_direction: Vector2i = Vector2i.ZERO
 
+var dead := false
 
 func _ready() -> void:
 	assert(tilemap, "请分配tilemap!")
@@ -170,3 +173,10 @@ func make_inside():
 
 func _local_to_tilemap() -> Vector2i:
 	return tilemap.local_to_map(self.global_position)
+
+func die():
+	if dead:
+		return
+	
+	dead = true
+	died.emit()

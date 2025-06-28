@@ -76,7 +76,7 @@ tile_set = SubResource("TileSet_xqllj")
 [node name="objLayer" type="TileMapLayer" parent="."]
 z_index = 2
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAAIAAQAAAAAAAQACAAMAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAEAAIAAQAAAAAAAQA=")
 tile_set = SubResource("TileSet_xqllj")
 
 [node name="Carpet" parent="objLayer" instance=ExtResource("5_lcd7o")]
