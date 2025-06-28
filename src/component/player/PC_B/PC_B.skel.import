@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://clg82y3frcb3c"
+path="res://.godot/imported/PC_B.skel-d84a218189b1814ff9c3acc6b61d45e3.spskel"
+
+[deps]
+
+source_file="res://src/component/player/PC_B/PC_B.skel"
+dest_files=["res://.godot/imported/PC_B.skel-d84a218189b1814ff9c3acc6b61d45e3.spskel"]
+
+[params]
+
