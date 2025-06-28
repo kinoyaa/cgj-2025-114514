@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bduri4t8cl51o"]
+[gd_scene load_steps=4 format=3 uid="uid://bduri4t8cl51o"]
 
 [ext_resource type="Script" uid="uid://bhn1ta2ccdhdu" path="res://src/component/fan/fan.gd" id="1_cc52a"]
 [ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_aat25"]
+[ext_resource type="PackedScene" uid="uid://df4w34fj3d8w5" path="res://src/fx/speed_line_fx.tscn" id="3_aat25"]
 
 [node name="FanRight" type="Node2D"]
 script = ExtResource("1_cc52a")
 metadata/_custom_type_script = "uid://bhn1ta2ccdhdu"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -105)
 texture = ExtResource("2_aat25")
 region_enabled = true
-region_rect = Rect2(256, 128, 128, 128)
+region_rect = Rect2(384, 256, 128, 256)
+
+[node name="speedLineFX" parent="." instance=ExtResource("3_aat25")]
+position = Vector2(22, -112)
+scale = Vector2(0.5, 0.5)

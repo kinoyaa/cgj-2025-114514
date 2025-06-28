@@ -24,13 +24,8 @@ enum State {
 			step_trigger.emit()
 			print("inside")
 		state = new_state
+@onready var spine_sprite: SpineSprite = %SpineSprite
 
-#var walking : bool = false:
-#	set(v):
-#		walking = v
-#		if !walking:
-#			make_inside()
-#			step_trigger.emit()
 
 # 返回当前在哪个tilemap的单元格
 func _local_to_tilemap() -> Vector2i:
@@ -40,14 +35,12 @@ func _local_to_tilemap() -> Vector2i:
 func _keep_walk(delta):
 	if state != State.WALKING:
 		return
-	#var direction = Vector2.RIGHT
-	#velocity = direction * speed * delta
 	move_toward_collide(Vector2i.RIGHT, delta)
 
 func move_toward_collide(direction: Vector2i, delta: float) -> void:
 	var target_coords = _local_to_tilemap() + direction
 	var target_position = tilemap.map_to_local(target_coords)
-	var room: Room = get_tree().current_scene.get_node_or_null("Room")
+	var room: Room = GameCore.now_action.room
 	if !Rect2i(room.position, room.size).has_point(target_position):
 		make_inside()
 		return
@@ -64,14 +57,16 @@ func move_toward_collide(direction: Vector2i, delta: float) -> void:
 func make_inside():
 	var t = create_tween()
 	t.tween_property(
-		self,"position",tilemap.map_to_local(_local_to_tilemap()),0.15
-		).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+		self,"position",tilemap.map_to_local(_local_to_tilemap()),0.4
+		)
 	t.tween_callback(func(): step_over.emit())
 
 #region overrides
 func _ready() -> void:
 	assert(tilemap,"请分配tilemap!")
+	GameCore.player = self
 	make_inside()
+	spine_sprite.get_animation_state().set_animation("animation")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"walk"):
@@ -83,10 +78,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	if state == State.WALKING:
 		_keep_walk(delta)
+		var cell_data = tilemap.get_cell_tile_data(_local_to_tilemap() + Vector2i.RIGHT)
+		if cell_data:
+			if cell_data.get_custom_data("type") == "carpet":
+				state = State.IDLE
+				make_inside()
 	else:
 		velocity = Vector2.ZERO
-	#move_and_collide(velocity)
-	pass
 
 func _draw() -> void:
 	pass
