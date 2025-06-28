@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+static var UNPASSABLE := [Fan]
+
 # 配置参数
 @export var speed: float = 200.0
 # 指定tilemap
@@ -38,8 +40,25 @@ func _local_to_tilemap() -> Vector2i:
 func _keep_walk(delta):
 	if state != State.WALKING:
 		return
-	var direction = Vector2.RIGHT
+	#var direction = Vector2.RIGHT
+	#velocity = direction * speed * delta
+	move_toward_collide(Vector2i.RIGHT, delta)
+
+func move_toward_collide(direction: Vector2i, delta: float) -> void:
+	var target_coords = _local_to_tilemap() + direction
+	var target_position = tilemap.map_to_local(target_coords)
+	var room: Room = get_tree().current_scene.get_node_or_null("Room")
+	if !Rect2i(room.position, room.size).has_point(target_position):
+		make_inside()
+		return
+	var trap_layer: TileMapLayer = get_tree().current_scene.get_node_or_null("trapLayer")
+	if trap_layer != null:
+		for trap in trap_layer.get_children():
+			var trap_coords: Vector2i = trap_layer.local_to_map(trap.global_position)
+			if trap_coords == target_coords && trap.get_script() in UNPASSABLE:
+				return
 	velocity = direction * speed * delta
+	move_and_collide(velocity)
 
 # 使自身居中于该单元格
 func make_inside():
@@ -66,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		_keep_walk(delta)
 	else:
 		velocity = Vector2.ZERO
-	move_and_collide(velocity)
+	#move_and_collide(velocity)
 	pass
 
 func _draw() -> void:
