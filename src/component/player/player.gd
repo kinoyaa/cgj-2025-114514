@@ -5,12 +5,15 @@ extends CharacterBody2D
 # 指定tilemap
 @export var tilemap: TileMapLayer
 
+# 落脚时触发的信号
+signal step_trigger
+
 var walking : bool = false:
 	set(v):
 		walking = v
 		if !walking:
 			make_inside()
-			pass
+			step_trigger.emit()
 
 # 返回当前在哪个tilemap的单元格
 func _local_to_tilemap() -> Vector2i:

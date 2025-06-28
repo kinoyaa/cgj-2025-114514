@@ -1,16 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce57tmdt03mnv"]
 
-[ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://scene/room.gd" id="1_yfdjg"]
+[ext_resource type="PackedScene" uid="uid://dj8ivq7btd0yh" path="res://src/component/room/room.tscn" id="1_ik7bt"]
 [ext_resource type="Texture2D" uid="uid://dd6fe5gvt0b3g" path="res://icon.svg" id="2_ik7bt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ik7bt"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Room" type="StaticBody2D" parent="."]
-script = ExtResource("1_yfdjg")
-size = Vector2i(1224, 712)
-metadata/_custom_type_script = "uid://d3q036pdl3epk"
+[node name="Room" parent="." instance=ExtResource("1_ik7bt")]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(654, 419)

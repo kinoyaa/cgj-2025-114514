@@ -59,7 +59,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAACAAEAAQABAAAAAAA=")
 tile_set = SubResource("TileSet_cx7bj")
 
 [node name="player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_cf133")]
-position = Vector2(244, 121)
+position = Vector2(191, 327)
 tilemap = NodePath("../objLayer")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
