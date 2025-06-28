@@ -71,6 +71,9 @@ limit_bottom = 1020
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Room" type="StaticBody2D" parent="."]
+[node name="Room" type="StaticBody2D" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("4_lcd7o")
+tilemap = NodePath("../backgroundLayer")
+tile_size = null
+size = Vector2i(1794, 1024)
 metadata/_custom_type_script = "uid://d3q036pdl3epk"
