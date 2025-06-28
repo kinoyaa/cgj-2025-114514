@@ -27,6 +27,9 @@ func play(p_globalPos:Vector2):
 	
 	tween = create_tween()
 	tween.tween_property(material, "shader_parameter/circle_size", -0.05, shrink_time)
+	await tween.step_finished
+	get_tree().change_scene_to_file("res://src/scene/title/title_scene.tscn")
+	tween = create_tween()
 	tween.tween_property(material, "shader_parameter/circle_size", 1.1, expand_time).set_delay(expand_delay_time)
 	tween.finished.connect(_on_tween_finished)
 

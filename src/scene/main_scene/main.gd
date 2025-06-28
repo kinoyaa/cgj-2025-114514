@@ -14,11 +14,9 @@ func _ready() -> void:
 			set_param("screen_height",size.y)
 	)
 
-
 func set_param(vname : String,value):
 	cover_effect.material.set_shader_parameter(vname,value)
 	pass
-
 
 func _on_example_gameover() -> void:
 	var level = level_vp.get_child(0)

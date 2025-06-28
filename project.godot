@@ -134,7 +134,7 @@ textures/vram_compression/import_etc2_astc=true
 
 fonts={
 &"BTH": "res://src/Fonts/BTH.TTF",
-&"Roboto": "res://addons/dialogic/Example Assets/Fonts/Roboto-Regular.ttf",
+&"Roboto": "res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf",
 &"songti": "res://src/Fonts/songti.ttf"
 }
 colors={}

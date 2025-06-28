@@ -73,7 +73,7 @@ func _input(event: InputEvent) -> void:
 			_clicked_coord = obj_layer.local_to_map(get_global_mouse_position())
 			# 目标物体
 			target_object = obj_layer.get_cell_tile_data(_clicked_coord)
-			for node : Node2D in fan_blow_able:
+			for node : Node2D in obj_layer.get_children():
 				if _clicked_coord == obj_layer.local_to_map(node.global_position):
 					target_object = node
 		else:
@@ -84,26 +84,32 @@ func _input(event: InputEvent) -> void:
 			var pull_target = _clicked_coord + pull_direction
 			if target_object != null:
 				# 节点形式的
-				if target_object is Node and carpet_can_puton(pull_target):
+				if target_object is Node:
 					if target_object is Fan.Carpet:
-						target_object.move(pull_direction,false)
-						match target_object.type:
-							Fan.Carpet.CarpetType.EXPAND:
-								if verticalOrHorizontal(pull_direction):
-									target_object.type = Fan.Carpet.CarpetType.VERTICAL
-								else:
-									target_object.type = Fan.Carpet.CarpetType.HORIZONTAL
-							Fan.Carpet.CarpetType.VERTICAL:
-								if verticalOrHorizontal(pull_direction):
-									target_object.type = Fan.Carpet.CarpetType.EXPAND
-								else:
-									target_object.type = Fan.Carpet.CarpetType.VERTICAL
-							Fan.Carpet.CarpetType.HORIZONTAL:
-								if verticalOrHorizontal(pull_direction):
-									target_object.type = Fan.Carpet.CarpetType.HORIZONTAL
-								else:
-									target_object.type = Fan.Carpet.CarpetType.EXPAND
-						pass
+						if carpet_can_puton(pull_target):
+							target_object.move(pull_direction,false)
+							match target_object.type:
+								Fan.Carpet.CarpetType.EXPAND:
+									if verticalOrHorizontal(pull_direction):
+										target_object.type = Fan.Carpet.CarpetType.VERTICAL
+									else:
+										target_object.type = Fan.Carpet.CarpetType.HORIZONTAL
+								Fan.Carpet.CarpetType.VERTICAL:
+									if verticalOrHorizontal(pull_direction):
+										target_object.type = Fan.Carpet.CarpetType.EXPAND
+									else:
+										target_object.type = Fan.Carpet.CarpetType.VERTICAL
+								Fan.Carpet.CarpetType.HORIZONTAL:
+									if verticalOrHorizontal(pull_direction):
+										target_object.type = Fan.Carpet.CarpetType.HORIZONTAL
+									else:
+										target_object.type = Fan.Carpet.CarpetType.EXPAND
+					elif target_object is Fan:
+						if are_directions_adjacent(target_object.direction,pull_direction):
+							var new_instance = Fan.get_instance_by_direction(pull_direction)
+							new_instance.position = target_object.position
+							obj_layer.add_child(new_instance)
+							target_object.queue_free()
 				# 图块形式的
 				elif target_object is TileData:
 					if pull_direction != Vector2i.ZERO:
@@ -133,6 +139,22 @@ func _input(event: InputEvent) -> void:
 											obj_layer.set_cell(pull_target,SOURCE_ID,CARPET_VERTICAL)
 										elif pull_direction == Vector2i.LEFT or pull_direction == Vector2i.RIGHT:
 											obj_layer.set_cell(pull_target,SOURCE_ID,CARPET_HORIZONTAL)
+
+
+## 检查方向向量是否相邻
+func are_directions_adjacent(dir1: Vector2i, dir2: Vector2i) -> bool:
+	if dir1 == dir2:return false
+	return (
+		(dir1 == Vector2i.RIGHT and dir2 == Vector2i.UP) or
+		(dir1 == Vector2i.UP and dir2 == Vector2i.LEFT) or
+		(dir1 == Vector2i.LEFT and dir2 == Vector2i.DOWN) or
+		(dir1 == Vector2i.DOWN and dir2 == Vector2i.RIGHT) or
+		# 反向检查
+		(dir2 == Vector2i.RIGHT and dir1 == Vector2i.UP) or
+		(dir2 == Vector2i.UP and dir1 == Vector2i.LEFT) or
+		(dir2 == Vector2i.LEFT and dir1 == Vector2i.DOWN) or
+		(dir2 == Vector2i.DOWN and dir1 == Vector2i.RIGHT)
+	)
 
 ## 判断横向纵向
 func verticalOrHorizontal(pull_direction) -> bool:

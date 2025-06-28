@@ -76,12 +76,14 @@ tile_set = SubResource("TileSet_xqllj")
 [node name="objLayer" type="TileMapLayer" parent="."]
 z_index = 2
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAAIAAQAAAAAAAQA=")
 tile_set = SubResource("TileSet_xqllj")
 
 [node name="Carpet" parent="objLayer" instance=ExtResource("5_lcd7o")]
 z_index = -1
-position = Vector2(573, 444)
+position = Vector2(576, 448)
+
+[node name="FanDown" parent="objLayer" instance=ExtResource("3_ve5ut")]
+position = Vector2(576, 320)
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("1_cf133")]
 z_index = 1

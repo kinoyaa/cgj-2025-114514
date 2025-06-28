@@ -1,4 +1,6 @@
-extends Node2D
+@tool
+extends Obj
+class_name Carpet
 
 @export var duration_speed := 0.4
 
@@ -20,26 +22,11 @@ enum CarpetType{
 				sprite.frame = 7
 
 var moving_tween: Tween = null
-@onready var layer : TileMapLayer = get_parent() as TileMapLayer
 @onready var sprite: Sprite2D = %sprite
 
-signal step_over
-
 func _ready() -> void:
-	make_inside()
-	pass
-
-# 使自身居中于该单元格
-func make_inside():
-	var t = create_tween()
-	t.tween_property(
-		self,"position",layer.map_to_local(_local_to_tilemap()),0.4
-		)
-	t.tween_callback(func(): step_over.emit())
-
-# 返回当前在哪个tilemap的单元格
-func _local_to_tilemap() -> Vector2i:
-	return layer.local_to_map(self.global_position)
+	super()
+	
 
 func move(target: Vector2i,fan : bool) -> void:
 	if moving_tween != null and moving_tween.is_running():

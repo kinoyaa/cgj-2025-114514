@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://f4jpf1a1j1wi"]
 
-[ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
+[ext_resource type="Script" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
 [ext_resource type="Texture2D" uid="uid://c7ikpjwkvlxhf" path="res://src/assets/imgs/title_scene/light.png" id="2_ihmu6"]
 [ext_resource type="Texture2D" uid="uid://v5bxnlkap8jg" path="res://src/assets/imgs/title_scene/person.png" id="3_fe6da"]
@@ -24,39 +24,57 @@ grow_vertical = 2
 script = ExtResource("1_5o2ak")
 
 [node name="bg_layer" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="bg_tex_rect" type="TextureRect" parent="bg_layer"]
-layout_mode = 0
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 1600.0
-offset_bottom = 900.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_7ipjn")
 
 [node name="mid_layer" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="light_tex_rect" type="TextureRect" parent="mid_layer"]
-layout_mode = 0
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 1600.0
-offset_bottom = 900.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_ihmu6")
 
 [node name="front_layer" type="Control" parent="."]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="person_tex_rect" type="TextureRect" parent="front_layer"]
-layout_mode = 0
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 1600.0
-offset_bottom = 900.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_fe6da")
 
 [node name="lerp_effect" type="Control" parent="." node_paths=PackedStringArray("bg_node", "mid_node", "front_node")]
@@ -100,7 +118,7 @@ offset_right = 507.0
 offset_bottom = 562.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("11_lqg17")
-texture_hover = ExtResource("12_kfflm")
+texture_hover = ExtResource("11_lqg17")
 script = ExtResource("9_qtecu")
 
 [node name="exit_btn" type="TextureButton" parent="."]
@@ -185,6 +203,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="level_popup" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

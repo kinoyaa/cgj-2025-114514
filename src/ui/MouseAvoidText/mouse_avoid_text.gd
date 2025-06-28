@@ -29,6 +29,11 @@ extends Control
 		alignment = v
 		_update_text()
 
+@export_enum("Top", "Center", "Bottom") var vertical_alignment: int = 0:
+	set(v):
+		vertical_alignment = v
+		_update_text()
+
 ## 避让设置
 @export var avoid_radius: float = 100.0
 @export var max_offset: float = 30.0
@@ -46,6 +51,7 @@ func _ready():
 	_label.hide()
 	add_child(_label)
 	_update_text()
+	resized.connect(_update_text)
 
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -86,7 +92,20 @@ func _update_text():
 	_char_indices.clear()
 	_line_widths.clear()
 	
-	var base_pos = Vector2(0, font.get_ascent(font_size))
+	# 计算文本总高度
+	var line_count = max(1, text.count("\n") + 1)
+	var text_height = line_count * font.get_height(font_size)
+	
+	# 计算垂直偏移
+	var vertical_offset = 0.0
+	match vertical_alignment:
+		1: # Center
+			vertical_offset = (size.y - text_height) / 2
+		2: # Bottom
+			vertical_offset = size.y - text_height
+	
+	# 设置基础位置，考虑字体基线
+	var base_pos = Vector2(0, vertical_offset + font.get_ascent(font_size))
 	var advance = Vector2.ZERO
 	var current_line_width = 0.0
 	var line_start_index = 0
