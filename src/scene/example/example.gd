@@ -10,6 +10,12 @@ var _released_coord : Vector2
 # 正触发的物品
 var target_object
 
+const SOURCE_ID = 0
+const CARPET_EXPAND = Vector2i(0,1)
+const CARPET_VERTICAL = Vector2i(1,1)
+const CARPET_HORIZONTAL = Vector2i(2,1)
+
+
 func _ready() -> void:
 	if !player and !tilemap:
 		push_warning("未赋值！")
@@ -40,28 +46,30 @@ func _input(event: InputEvent) -> void:
 								match target_object.get_custom_data("direction"):
 									"vertical":
 										if pull_direction == Vector2.UP or pull_direction == Vector2.DOWN:
-											tilemap.set_cell(pull_target,1,Vector2i(2,0))
+											tilemap.set_cell(pull_target,SOURCE_ID,CARPET_EXPAND)
 										elif pull_direction == Vector2.LEFT or pull_direction == Vector2.RIGHT:
-											tilemap.set_cell(pull_target,1,Vector2i(0,0))
+											tilemap.set_cell(pull_target,SOURCE_ID,CARPET_VERTICAL)
 									"horizontal":
 										if pull_direction == Vector2.UP or pull_direction == Vector2.DOWN:
-											tilemap.set_cell(pull_target,1,Vector2i(1,0))
+											tilemap.set_cell(pull_target,SOURCE_ID,CARPET_HORIZONTAL)
 										elif pull_direction == Vector2.LEFT or pull_direction == Vector2.RIGHT:
-											tilemap.set_cell(pull_target,1,Vector2i(2,0))
+											tilemap.set_cell(pull_target,SOURCE_ID,CARPET_EXPAND)
 						"carpet_expand":
 							if carpet_can_puton(pull_target):
 								# 删掉原位置的
 								tilemap.erase_cell(_clicked_coord)
 								if pull_direction == Vector2.UP or pull_direction == Vector2.DOWN:
-									tilemap.set_cell(pull_target,1,Vector2(0,0))
+									tilemap.set_cell(pull_target,SOURCE_ID,CARPET_VERTICAL)
 								elif pull_direction == Vector2.LEFT or pull_direction == Vector2.RIGHT:
-									tilemap.set_cell(pull_target,1,Vector2(1,0))
+									tilemap.set_cell(pull_target,SOURCE_ID,CARPET_HORIZONTAL)
 
 
 
 ## TODO 检测地毯是否能放到指定地方
-func carpet_can_puton(released_coord : Vector2i) -> bool:
-	return tilemap.get_cell_tile_data(released_coord) == null
+func carpet_can_puton(target : Vector2i) -> bool:
+	var condition1 = tilemap.get_cell_source_id(target) == -1
+	var condition2 = player._local_to_tilemap() != target
+	return condition1 and condition2
 
 # 输入：当前坐标 (current_pos) 和目标坐标 (target_pos)
 func get_grid_direction(current_pos: Vector2i, target_pos: Vector2i) -> Vector2:

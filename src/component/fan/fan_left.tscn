@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhn1ta2ccdhdu" path="res://src/component/fan/fan.gd" id="1_0bful"]
 [ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_ax1jl"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax1jl"]
-size = Vector2(384, 64)
+[ext_resource type="PackedScene" uid="uid://df4w34fj3d8w5" path="res://src/fx/speed_line_fx.tscn" id="3_g734b"]
 
 [node name="FanLeft" type="Node2D"]
 script = ExtResource("1_0bful")
@@ -12,16 +10,11 @@ direction = Vector2i(-1, 0)
 metadata/_custom_type_script = "uid://bhn1ta2ccdhdu"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -105)
 texture = ExtResource("2_ax1jl")
 region_enabled = true
-region_rect = Rect2(128, 128, 128, 128)
+region_rect = Rect2(256, 256, 128, 256)
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-192, 0)
-shape = SubResource("RectangleShape2D_ax1jl")
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="speedLineFX" parent="." instance=ExtResource("3_g734b")]
+position = Vector2(-20, -114)
+scale = Vector2(-0.5, 0.5)

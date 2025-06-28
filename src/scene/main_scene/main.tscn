@@ -35,7 +35,7 @@ shader_parameter/color_bleed_quality = 5
 [sub_resource type="RichTextEffect" id="RichTextEffect_giqa4"]
 resource_name = "curspull"
 script = ExtResource("3_giqa4")
-metadata/rt = 2932070249182
+metadata/rt = 5403874260245
 
 [sub_resource type="Environment" id="Environment_csug5"]
 background_mode = 3
@@ -180,8 +180,8 @@ override_bbcodeEnabled = true
 override_clipContents = false
 override_fitContent = true
 metadata/_custom_type_script = "uid://2f4fi75scxes"
-metadata/mouse_position = Vector2(881.5594, 177.48999)
-metadata/frame = 12415
+metadata/mouse_position = Vector2(685.0549, -129.5329)
+metadata/frame = 10190
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")

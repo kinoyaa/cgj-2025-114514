@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://df4w34fj3d8w5"]
+
+[ext_resource type="Texture2D" uid="uid://c6wd4ebouydn5" path="res://src/assets/imgs/speed_line.png" id="1_63ec2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_acnon"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_v21ug"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.33411214, 0.6682243, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.84705883, 1, 1, 1, 0.7647059, 1, 1, 1, 0)
+
+[node name="speedLineFX" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_acnon")
+amount = 5
+texture = ExtResource("1_63ec2")
+lifetime = 1.7
+speed_scale = 2.7
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(10, 70)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 353.2
+initial_velocity_max = 355.8
+scale_amount_min = 0.3
+scale_amount_max = 1.7
+color = Color(1, 1, 1, 0.54509807)
+color_ramp = SubResource("Gradient_v21ug")
