@@ -21,6 +21,8 @@ SLib="*res://addons/SLib/SLib.gd"
 AutoLoadConfig="*res://addons/apprentice/config/auto_load_config.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameCore="*res://src/autoload/GameCore.gd"
+user_setting="*res://src/autoload/user_setting.gd"
+volume_setting="*res://src/autoload/volume_setting.gd"
 
 [dialogic]
 
