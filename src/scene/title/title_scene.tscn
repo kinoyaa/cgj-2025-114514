@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=14 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cl673giljo3qc" path="res://src/scene/title/setting_popup.gd" id="5_ihmu6"]
 [ext_resource type="Texture2D" uid="uid://bq5rfpnqrupsv" path="res://src/assets/imgs/title_scene/title.png" id="8_bjufa"]
 [ext_resource type="Texture2D" uid="uid://5yk2en37li2i" path="res://src/assets/imgs/title_scene/start_game_btn.png" id="9_14e8x"]
+[ext_resource type="Script" uid="uid://7o0y1pwpdfde" path="res://src/component/sound_texture_btn/sound_texture_btn.gd" id="9_qtecu"]
 [ext_resource type="Texture2D" uid="uid://d3ceoyhv8rvhq" path="res://src/assets/imgs/title_scene/start_game_btn_hover.png" id="10_ytxhq"]
 [ext_resource type="Texture2D" uid="uid://v65ivok7frnp" path="res://src/assets/imgs/title_scene/setting_btn.png" id="11_lqg17"]
 [ext_resource type="Texture2D" uid="uid://dh47aasx172kr" path="res://src/assets/imgs/title_scene/exit_btn_hover.png" id="12_kfflm"]
@@ -89,6 +90,7 @@ offset_bottom = 481.00003
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("9_14e8x")
 texture_hover = ExtResource("10_ytxhq")
+script = ExtResource("9_qtecu")
 
 [node name="setting_btn" type="TextureButton" parent="."]
 layout_mode = 0
@@ -99,6 +101,7 @@ offset_bottom = 562.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("11_lqg17")
 texture_hover = ExtResource("12_kfflm")
+script = ExtResource("9_qtecu")
 
 [node name="exit_btn" type="TextureButton" parent="."]
 layout_mode = 0
@@ -109,6 +112,7 @@ offset_bottom = 642.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("13_fsaq4")
 texture_hover = ExtResource("12_kfflm")
+script = ExtResource("9_qtecu")
 
 [node name="setting_popup" type="Control" parent="."]
 visible = false
@@ -179,6 +183,31 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="level_popup" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel" type="Panel" parent="level_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="close_btn" type="TextureButton" parent="level_popup/panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
 
 [connection signal="pressed" from="setting_btn" to="." method="_on_setting_btn_pressed"]
 [connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]
