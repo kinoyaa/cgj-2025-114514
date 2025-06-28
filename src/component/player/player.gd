@@ -1,19 +1,32 @@
 extends CharacterBody2D
 
 # 配置参数
-@export var speed: float = 15000.0
+@export var speed: float = 200.0
 # 指定tilemap
 @export var tilemap: TileMapLayer
 
 # 落脚时触发的信号
 signal step_trigger
 
-var walking : bool = false:
-	set(v):
-		walking = v
-		if !walking:
+enum State {
+	IDLE,
+	WALKING,
+	FLOATING,
+}
+
+var state: State = State.IDLE:
+	set(new_state):
+		state = new_state
+		if state == State.WALKING && new_state != State.WALKING:
 			make_inside()
 			step_trigger.emit()
+
+#var walking : bool = false:
+#	set(v):
+#		walking = v
+#		if !walking:
+#			make_inside()
+#			step_trigger.emit()
 
 # 返回当前在哪个tilemap的单元格
 func _local_to_tilemap() -> Vector2i:
@@ -21,6 +34,8 @@ func _local_to_tilemap() -> Vector2i:
 
 # 始终向右走
 func _keep_walk(delta):
+	if state != State.WALKING:
+		return
 	var direction = Vector2.RIGHT
 	velocity = direction * speed * delta
 
@@ -39,21 +54,20 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"walk"):
-		if walking:
-			walking = false
+		if state == State.WALKING:
+			state = State.IDLE
 		else:
-			walking = true
+			state = State.WALKING
 
 func _physics_process(delta: float) -> void:
-	if walking:
+	if state == State.WALKING:
 		_keep_walk(delta)
 	else:
 		velocity = Vector2.ZERO
-	move_and_slide()
+	move_and_collide(velocity)
 	pass
 
 func _draw() -> void:
-	
 	pass
 
 #endregion
