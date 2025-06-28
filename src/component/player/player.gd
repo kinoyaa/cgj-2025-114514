@@ -58,7 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"walk"):
 		if state == State.WALKING:
 			state = State.IDLE
-		else:
+		elif state == State.IDLE:
 			state = State.WALKING
 
 func _physics_process(delta: float) -> void:
