@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=40 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -17,6 +17,20 @@
 [ext_resource type="AudioStream" uid="uid://bfy2ibvqqb8sb" path="res://src/assets/se/cancel2.ogg" id="14_lqg17"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="15_14e8x"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
+[ext_resource type="Script" uid="uid://jnbunb5w3nav" path="res://src/scene/title/level_selecting_button.gd" id="18_kfflm"]
+[ext_resource type="Texture2D" uid="uid://d3vjkeh7wvkgp" path="res://src/ui/levels/headline.png" id="19_ih4jv"]
+[ext_resource type="Texture2D" uid="uid://dky72kk1kir7t" path="res://src/ui/levels/0.png" id="20_eeybf"]
+[ext_resource type="PackedScene" uid="uid://guytleeix8ip" path="res://src/scene/actions/action1/action1.tscn" id="22_ddpsu"]
+[ext_resource type="Texture2D" uid="uid://bjnlik0jm8c8r" path="res://src/ui/levels/I.png" id="23_trblc"]
+[ext_resource type="Texture2D" uid="uid://b5brogf6a18mx" path="res://src/ui/levels/II.png" id="24_qhjgy"]
+[ext_resource type="Texture2D" uid="uid://c5rsvjut1ijk6" path="res://src/ui/levels/III.png" id="25_2v3xh"]
+[ext_resource type="Texture2D" uid="uid://q51s1yvic4ae" path="res://src/ui/levels/IV.png" id="26_8iu45"]
+[ext_resource type="Texture2D" uid="uid://lss770p62l4f" path="res://src/ui/levels/IX.png" id="27_x6up2"]
+[ext_resource type="Texture2D" uid="uid://c2sfky66ae0e2" path="res://src/ui/levels/V.png" id="28_bkexh"]
+[ext_resource type="Texture2D" uid="uid://0nh6oq2qqsq0" path="res://src/ui/levels/VI.png" id="29_8tq0q"]
+[ext_resource type="Texture2D" uid="uid://cl3bq2u38lx1g" path="res://src/ui/levels/VII.png" id="30_k00jk"]
+[ext_resource type="Texture2D" uid="uid://dphhgsfg3s30d" path="res://src/ui/levels/VIII.png" id="31_4fihh"]
+[ext_resource type="Texture2D" uid="uid://pw3x1da8eqe6" path="res://src/ui/levels/X.png" id="32_rld5g"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ytxhq"]
 blend_mode = 1
@@ -397,6 +411,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="level_popup"]
+material = SubResource("ShaderMaterial_14e8x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="panel" type="Panel" parent="level_popup"]
 layout_mode = 1
 anchors_preset = 15
@@ -405,20 +428,107 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="close_btn" type="TextureButton" parent="level_popup/panel"]
+[node name="Headline" type="TextureRect" parent="level_popup/panel"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -461.0
+offset_top = 60.0
+offset_right = 461.0
+offset_bottom = 197.0
+grow_horizontal = 2
+texture = ExtResource("19_ih4jv")
+
+[node name="Zero" type="TextureButton" parent="level_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.125
+anchor_right = 0.5
+anchor_bottom = 0.125
+offset_left = -74.5
+offset_right = 74.5
+offset_bottom = 147.0
+grow_horizontal = 2
+texture_normal = ExtResource("20_eeybf")
+script = ExtResource("18_kfflm")
+
+[node name="GridContainer" type="GridContainer" parent="level_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.625
+anchor_right = 0.5
+anchor_bottom = 0.75
+offset_left = -517.0
+offset_top = -184.0
+offset_right = 517.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+columns = 5
+
+[node name="TextureButton" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("23_trblc")
+script = ExtResource("18_kfflm")
+action = ExtResource("22_ddpsu")
+
+[node name="TextureButton2" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("24_qhjgy")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton3" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("25_2v3xh")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton4" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("26_8iu45")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton5" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("27_x6up2")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton6" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("28_bkexh")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton7" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("29_8tq0q")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton8" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("30_k00jk")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton9" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("31_4fihh")
+script = ExtResource("18_kfflm")
+
+[node name="TextureButton10" type="TextureButton" parent="level_popup/panel/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("32_rld5g")
+script = ExtResource("18_kfflm")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ytxhq")
 
+[connection signal="pressed" from="start_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="setting_btn" to="." method="_on_setting_btn_pressed"]
 [connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]
 [connection signal="gui_input" from="setting_popup/ColorRect" to="setting_popup" method="_on_color_rect_gui_input"]
 [connection signal="pressed" from="setting_popup/panel/close_btn" to="setting_popup" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="setting_popup/panel/apply_btn" to="setting_popup" method="_on_apply_btn_pressed"]
+[connection signal="gui_input" from="level_popup/panel" to="." method="_on_panel_gui_input"]

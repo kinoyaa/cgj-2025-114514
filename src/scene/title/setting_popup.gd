@@ -27,7 +27,6 @@ func close():
 	hide()
 
 	sound_bus.play_sound(close_sound)
-	print(6)
 
 func update_volume():
 	sound_slider.value = volume_setting.get_group_volume(volume_setting.SOUND_GROUP)
