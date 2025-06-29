@@ -182,6 +182,8 @@ func carpet_can_puton(target : Vector2i) -> bool:
 				condition3 = false
 			if node is Carpet:
 				condition3 = false
+			if node is Door:
+				condition3 = false
 	# 不会超出room
 	var condition4 = Rect2i(room.position, room.size).has_point(obj_layer.map_to_local(target))
 	# 不会超过背景没刷的部分

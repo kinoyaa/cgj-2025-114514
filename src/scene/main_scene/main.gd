@@ -14,6 +14,7 @@ extends Control
 @onready var menu_layer: CanvasLayer = %menu_layer
 
 func _ready() -> void:
+	menu_layer.process_mode = Node.PROCESS_MODE_ALWAYS
 	resized.connect(
 		func():
 			set_param("screen_width",size.x)
@@ -50,15 +51,19 @@ func _ready() -> void:
 					"menu":
 						menu_layer.show()
 						sound_bus.play_sound(retryOrQuit_sound)
+						get_tree().paused = true
 					"continue":
 						menu_layer.hide()
 						sound_bus.play_sound(click_sound)
+						get_tree().paused = false
 					"retry":
 						retry()
 						sound_bus.play_sound(retryOrQuit_sound)
+						get_tree().paused = false
 					"quit":
 						back_to_title()
 						sound_bus.play_sound(retryOrQuit_sound)
+						get_tree().paused = false
 		)
 
 func back_to_title():
