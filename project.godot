@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="CGJ2025"
+config/name="守梦之屋"
 run/main_scene="uid://cq172ohp7raos"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"

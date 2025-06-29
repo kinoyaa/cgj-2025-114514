@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=20 format=3 uid="uid://f4jpf1a1j1wi"]
 
-[ext_resource type="Script" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
+[ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
 [ext_resource type="Texture2D" uid="uid://c7ikpjwkvlxhf" path="res://src/assets/imgs/title_scene/light.png" id="2_ihmu6"]
 [ext_resource type="Texture2D" uid="uid://v5bxnlkap8jg" path="res://src/assets/imgs/title_scene/person.png" id="3_fe6da"]
@@ -9,10 +9,35 @@
 [ext_resource type="Texture2D" uid="uid://bq5rfpnqrupsv" path="res://src/assets/imgs/title_scene/title.png" id="8_bjufa"]
 [ext_resource type="Texture2D" uid="uid://5yk2en37li2i" path="res://src/assets/imgs/title_scene/start_game_btn.png" id="9_14e8x"]
 [ext_resource type="Script" uid="uid://7o0y1pwpdfde" path="res://src/component/sound_texture_btn/sound_texture_btn.gd" id="9_qtecu"]
-[ext_resource type="Texture2D" uid="uid://d3ceoyhv8rvhq" path="res://src/assets/imgs/title_scene/start_game_btn_hover.png" id="10_ytxhq"]
+[ext_resource type="AudioStream" uid="uid://cptttig8t2h8d" path="res://src/assets/se/confirm.ogg" id="10_14e8x"]
 [ext_resource type="Texture2D" uid="uid://v65ivok7frnp" path="res://src/assets/imgs/title_scene/setting_btn.png" id="11_lqg17"]
-[ext_resource type="Texture2D" uid="uid://dh47aasx172kr" path="res://src/assets/imgs/title_scene/exit_btn_hover.png" id="12_kfflm"]
+[ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="11_ytxhq"]
 [ext_resource type="Texture2D" uid="uid://j2d26guv57qh" path="res://src/assets/imgs/title_scene/exit_btn.png" id="13_fsaq4"]
+[ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="14_bjufa"]
+[ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="15_14e8x"]
+[ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtecu"]
+bg_color = Color(1, 1, 1, 1)
+shadow_color = Color(0.45882353, 0.47843137, 0.63529414, 1)
+shadow_size = 5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14e8x"]
+shader = ExtResource("14_bjufa")
+shader_parameter/strength = 3.3
+shader_parameter/mix_percentage = 0.3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjufa"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 5
 
 [node name="title_scene" type="Control"]
 layout_mode = 3
@@ -107,8 +132,23 @@ offset_right = 624.0
 offset_bottom = 481.00003
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("9_14e8x")
-texture_hover = ExtResource("10_ytxhq")
 script = ExtResource("9_qtecu")
+click_sound = ExtResource("10_14e8x")
+hover_sound = ExtResource("11_ytxhq")
+
+[node name="line" type="Panel" parent="start_btn"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.464737
+offset_bottom = 12.92952
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1e-05, 1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
 [node name="setting_btn" type="TextureButton" parent="."]
 layout_mode = 0
@@ -118,8 +158,23 @@ offset_right = 507.0
 offset_bottom = 562.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("11_lqg17")
-texture_hover = ExtResource("11_lqg17")
 script = ExtResource("9_qtecu")
+click_sound = ExtResource("10_14e8x")
+hover_sound = ExtResource("11_ytxhq")
+
+[node name="line" type="Panel" parent="setting_btn"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.464737
+offset_bottom = 12.92952
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1e-05, 1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
 [node name="exit_btn" type="TextureButton" parent="."]
 layout_mode = 0
@@ -129,8 +184,23 @@ offset_right = 444.0
 offset_bottom = 642.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("13_fsaq4")
-texture_hover = ExtResource("12_kfflm")
 script = ExtResource("9_qtecu")
+click_sound = ExtResource("10_14e8x")
+hover_sound = ExtResource("11_ytxhq")
+
+[node name="line" type="Panel" parent="exit_btn"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.464737
+offset_bottom = 12.92952
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1e-05, 1)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
 [node name="setting_popup" type="Control" parent="."]
 visible = false
@@ -142,6 +212,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_ihmu6")
 
+[node name="ColorRect" type="ColorRect" parent="setting_popup"]
+material = SubResource("ShaderMaterial_14e8x")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="panel" type="Panel" parent="setting_popup"]
 custom_minimum_size = Vector2(320, 220)
 layout_mode = 1
@@ -150,12 +229,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -110.0
-offset_right = 160.0
-offset_bottom = 110.0
+offset_left = -362.0
+offset_top = -214.0
+offset_right = 362.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjufa")
 
 [node name="close_btn" type="TextureButton" parent="setting_popup/panel"]
 layout_mode = 1
@@ -201,6 +281,21 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="MouseAvoidText" type="Control" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 57.0
+grow_horizontal = 2
+script = ExtResource("15_14e8x")
+text = "Settings"
+font = ExtResource("16_ytxhq")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+alignment = 1
+vertical_alignment = 1
+metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
 [node name="level_popup" type="Control" parent="."]
 visible = false
