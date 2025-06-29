@@ -1,15 +1,42 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq172ohp7raos"]
+[gd_scene load_steps=10 format=3 uid="uid://guytleeix8ip"]
 
-[ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_1p2jo"]
-[ext_resource type="PackedScene" uid="uid://cmr0ldbxnrb8s" path="res://src/scene/example/example.tscn" id="1_6pe3w"]
-[ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="2_giqa4"]
-[ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="6_4d420"]
-[ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_u5mvd"]
-[ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="7_01q62"]
-[ext_resource type="PackedScene" uid="uid://n4fpt6hnh0cc" path="res://src/ui/gameover_transition/gameover_transition.tscn" id="7_4d420"]
+[ext_resource type="PackedScene" uid="uid://dtghost0kiywc" path="res://src/scene/actions/action1/action1content.tscn" id="1_gn1a8"]
+[ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="3_c1s8u"]
+[ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="4_5yq5l"]
+[ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="5_6nh4f"]
+[ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_uil2g"]
+[ext_resource type="PackedScene" uid="uid://n4fpt6hnh0cc" path="res://src/ui/gameover_transition/gameover_transition.tscn" id="7_uoaf1"]
+
+[sub_resource type="GDScript" id="GDScript_gn1a8"]
+script/source = "extends Control
+
+## TODO 失败特效
+
+@export var level_vp:SubViewport
+@export var gameover_transition:Node
+
+@onready var cover_effect: ColorRect = %cover_effect
+
+func _ready() -> void:
+	resized.connect(
+		func():
+			set_param(\"screen_width\",size.x)
+			set_param(\"screen_height\",size.y)
+	)
+
+func set_param(vname : String,value):
+	cover_effect.material.set_shader_parameter(vname,value)
+	pass
+
+func _on_example_gameover() -> void:
+	var level = level_vp.get_child(0)
+	var vpPos = (level_vp.canvas_transform * level_vp.global_canvas_transform) * level.player.get_global_position()
+	print(level.player.get_global_position(), \" vp pos = \", vpPos, \" p = \", level_vp.canvas_transform.origin)
+	gameover_transition.play(vpPos)
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
-shader = ExtResource("2_giqa4")
+shader = ExtResource("3_c1s8u")
 shader_parameter/circle_size = 1.5
 shader_parameter/feather = 0.05
 shader_parameter/circle_position = Vector2(0.5, 0.5)
@@ -30,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1p2jo")
+script = SubResource("GDScript_gn1a8")
 level_vp = NodePath("SubViewportContainer/level_vp")
 gameover_transition = NodePath("CanvasLayer/gameover_transition")
 
@@ -64,7 +91,7 @@ handle_input_locally = false
 size = Vector2i(846, 494)
 render_target_update_mode = 4
 
-[node name="Example" parent="SubViewportContainer/level_vp" instance=ExtResource("1_6pe3w")]
+[node name="action1content" parent="SubViewportContainer/level_vp" instance=ExtResource("1_gn1a8")]
 
 [node name="cover_effect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -89,14 +116,14 @@ offset_top = 41.0
 offset_right = 215.0
 offset_bottom = 581.0
 size_flags_vertical = 3
-script = ExtResource("6_4d420")
+script = ExtResource("4_5yq5l")
 text = "操作提示
 
 单击鼠标右键
 开始移动
 
 鼠标拖拽毯子"
-font = ExtResource("7_01q62")
+font = ExtResource("5_6nh4f")
 font_size = 32
 avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
@@ -116,22 +143,20 @@ mouse_filter = 2
 [node name="MouseAvoidText" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("6_4d420")
-text = "Example"
-font = ExtResource("7_01q62")
+script = ExtResource("4_5yq5l")
+text = "第一关"
+font = ExtResource("5_6nh4f")
 font_size = 76
 alignment = 1
 vertical_alignment = 1
 avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
-[node name="camera_slider" parent="CanvasLayer/Control" node_paths=PackedStringArray("viewport") instance=ExtResource("6_u5mvd")]
+[node name="camera_slider" parent="CanvasLayer/Control" node_paths=PackedStringArray("viewport") instance=ExtResource("6_uil2g")]
 layout_mode = 2
 viewport = NodePath("../../../SubViewportContainer/level_vp")
 
-[node name="gameover_transition" parent="CanvasLayer" instance=ExtResource("7_4d420")]
+[node name="gameover_transition" parent="CanvasLayer" instance=ExtResource("7_uoaf1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")
-
-[connection signal="gameover" from="SubViewportContainer/level_vp/Example" to="." method="_on_example_gameover"]

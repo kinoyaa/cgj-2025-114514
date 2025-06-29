@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasModulate
 
 signal won
 signal gameover
@@ -85,7 +85,7 @@ func _input(event: InputEvent) -> void:
 			if target_object != null:
 				# 节点形式的
 				if target_object is Node:
-					if target_object is Fan.Carpet:
+					if target_object is Carpet:
 						if carpet_can_puton(pull_target):
 							target_object.move(pull_direction,false)
 							match target_object.type:
@@ -166,9 +166,23 @@ func verticalOrHorizontal(pull_direction) -> bool:
 
 ## TODO 检测地毯是否能放到指定地方
 func carpet_can_puton(target : Vector2i) -> bool:
+	# obj_layer里的这块地方为空
 	var condition1 = obj_layer.get_cell_source_id(target) == -1
+	# 不能滚到角色上
 	var condition2 = player._local_to_tilemap() != target
-	return condition1 and condition2
+	# 前面没有东西挡着
+	var condition3 = true
+	for node in obj_layer.get_children():
+		if target == obj_layer.local_to_map(node.global_position):
+			if node is Fan:
+				condition3 = false
+			if node is Carpet:
+				condition3 = false
+	# 不会超出room
+	var condition4 = Rect2i(room.position, room.size).has_point(obj_layer.map_to_local(target))
+	# 不会超过背景没刷的部分
+	var condition5 = background_layer.get_cell_source_id(target) != -1
+	return condition1 and condition2 and condition3 and condition4 and condition5
 
 # 输入：当前坐标 (current_pos) 和目标坐标 (target_pos)
 func get_grid_direction(current_pos: Vector2i, target_pos: Vector2i) -> Vector2i:

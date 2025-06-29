@@ -34,7 +34,7 @@ func _draw() -> void:
 	box.texture_margin_right = 256
 	box.texture_margin_top = 256
 	box.texture_margin_bottom = 256
-	box.draw(get_canvas_item(), rect)
+	#box.draw(get_canvas_item(), rect)
 	if !Engine.is_editor_hint():
 		return
 	draw_rect(rect, Color.AQUA, false)

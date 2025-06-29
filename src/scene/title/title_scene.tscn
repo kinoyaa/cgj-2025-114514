@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=22 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -16,6 +16,9 @@
 [ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="14_bjufa"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="15_14e8x"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ytxhq"]
+blend_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtecu"]
 bg_color = Color(1, 1, 1, 1)
@@ -38,6 +41,11 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 corner_detail = 5
+
+[sub_resource type="Environment" id="Environment_ytxhq"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.42
 
 [node name="title_scene" type="Control"]
 layout_mode = 3
@@ -66,6 +74,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_7ipjn")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -651.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="mid_layer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -76,13 +104,19 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="light_tex_rect" type="TextureRect" parent="mid_layer"]
+material = SubResource("CanvasItemMaterial_ytxhq")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -108.44446
+offset_top = -61.0
+offset_right = 144.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ihmu6")
+expand_mode = 1
 
 [node name="front_layer" type="Control" parent="."]
 layout_mode = 1
@@ -98,6 +132,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -50.0
+offset_right = 320.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_fe6da")
@@ -146,7 +184,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -172,7 +210,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -198,7 +236,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -322,6 +360,9 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ytxhq")
 
 [connection signal="pressed" from="setting_btn" to="." method="_on_setting_btn_pressed"]
 [connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]

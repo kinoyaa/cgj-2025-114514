@@ -1,0 +1,141 @@
+[gd_scene load_steps=16 format=4 uid="uid://dtghost0kiywc"]
+
+[ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_lj4dc"]
+[ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_uha4h"]
+[ext_resource type="PackedScene" uid="uid://co7awtaa462mi" path="res://src/component/fan/fan_down.tscn" id="3_eiv0p"]
+[ext_resource type="PackedScene" uid="uid://dq4u8f0vqth6o" path="res://src/component/fan/fan_left.tscn" id="4_p0jh8"]
+[ext_resource type="PackedScene" uid="uid://bduri4t8cl51o" path="res://src/component/fan/fan_right.tscn" id="5_pf8k3"]
+[ext_resource type="PackedScene" uid="uid://dhkecru4ccueg" path="res://src/component/fan/fan_up.tscn" id="6_3xru1"]
+[ext_resource type="PackedScene" uid="uid://co0sgbpfvqje2" path="res://src/component/player/player.tscn" id="8_m4xii"]
+[ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://src/component/room/room.gd" id="9_aowqx"]
+
+[sub_resource type="Gradient" id="Gradient_1h743"]
+offsets = PackedFloat32Array(0, 0.56302524)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_61d4j"]
+gradient = SubResource("Gradient_1h743")
+fill = 1
+fill_from = Vector2(0.4884005, 0.53601956)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i3b0"]
+texture = ExtResource("2_uha4h")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/custom_data_0 = "trap"
+2:0/0/custom_data_1 = "none"
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_0 = "carpet_expand"
+0:1/0/custom_data_1 = "none"
+1:1/0 = 0
+1:1/0/custom_data_0 = "carpet"
+1:1/0/custom_data_1 = "vertical"
+2:1/0 = 0
+2:1/0/custom_data_0 = "carpet"
+2:1/0/custom_data_1 = "horizontal"
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5i3b0"]
+resource_name = "tools"
+scenes/1/scene = ExtResource("3_eiv0p")
+scenes/2/scene = ExtResource("4_p0jh8")
+scenes/3/scene = ExtResource("5_pf8k3")
+scenes/4/scene = ExtResource("6_3xru1")
+
+[sub_resource type="TileSet" id="TileSet_xqllj"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = "direction"
+custom_data_layer_1/type = 4
+sources/0 = SubResource("TileSetAtlasSource_5i3b0")
+sources/1 = SubResource("TileSetScenesCollectionSource_5i3b0")
+
+[sub_resource type="Gradient" id="Gradient_55fax"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4947589, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.41509435, 0.41509435, 0.41509435, 0.5849056, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_57smy"]
+gradient = SubResource("Gradient_55fax")
+fill_to = Vector2(0, 1)
+
+[node name="action1content" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
+y_sort_enabled = true
+color = Color(0.6878065, 0.6878065, 0.68780655, 1)
+script = ExtResource("1_lj4dc")
+player = NodePath("player")
+background_layer = NodePath("backgroundLayer")
+trap_layer = NodePath("trapLayer")
+obj_layer = NodePath("objLayer")
+room = NodePath("Room")
+camera = NodePath("Camera2D")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(232, 132)
+scale = Vector2(5.6875, 5.6875)
+color = Color(0.54509807, 1, 1, 1)
+texture = SubResource("GradientTexture2D_61d4j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -494.0
+offset_top = -245.0
+offset_right = 2214.0
+offset_bottom = 2028.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="backgroundLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAUAAAAAAAAAAAABAAAAAAADAAAAAAABAAEAAAAEAAAAAAABAAQAAAAAAAAAAAABAAUAAAABAAAAAAACAAAAAAADAAAAAAACAAEAAAAEAAAAAAACAAIAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAADAAAAAAADAAAAAAADAAQAAAAAAAAAAAAEAAAAAAADAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAFAAAAAAADAAAAAAAFAAQAAAABAAAAAAAGAAAAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAABAAAAAAAGAAQAAAAAAAAAAAAHAAAAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAAAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAABAAAAAAAIAAQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_xqllj")
+
+[node name="TextureRect" type="TextureRect" parent="backgroundLayer"]
+offset_right = 1152.0
+offset_bottom = 256.0
+texture = SubResource("GradientTexture2D_57smy")
+
+[node name="trapLayer" type="TileMapLayer" parent="."]
+z_index = 1
+tile_set = SubResource("TileSet_xqllj")
+
+[node name="objLayer" type="TileMapLayer" parent="."]
+z_index = 2
+y_sort_enabled = true
+tile_set = SubResource("TileSet_xqllj")
+
+[node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_m4xii")]
+z_index = 1
+position = Vector2(192, 439)
+collision_layer = 1
+action = NodePath("")
+tilemap = NodePath("../objLayer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(191, 327)
+offset = Vector2(100, 100)
+zoom = Vector2(0.7, 0.7)
+limit_left = -240
+limit_top = -180
+limit_right = 1380
+limit_bottom = 900
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Room" type="StaticBody2D" parent="."]
+z_index = 1
+position = Vector2(0, 249)
+script = ExtResource("9_aowqx")
+size = Vector2i(1792, 646)
+metadata/_custom_type_script = "uid://d3q036pdl3epk"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(142, 507)
+texture = ExtResource("2_uha4h")
+offset = Vector2(-2, -15)
+region_enabled = true
+region_rect = Rect2(0, 512, 256, 256)
