@@ -108,6 +108,7 @@ type = 2
 
 [node name="Carpet2" parent="objLayer" instance=ExtResource("8_lwxv3")]
 position = Vector2(832, 320)
+type = 1
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_0d475")]
 z_index = 2

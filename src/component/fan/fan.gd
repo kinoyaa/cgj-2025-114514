@@ -34,10 +34,18 @@ func _physics_process(delta: float) -> void:
 			var room: Room = GameCore.now_action.room
 			if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
 				player.state = player.State.FLOATING
-				player.move_toward_collide(direction, delta)
+				player.is_blown_by_fan = true
+				if GameCore.now_action.carpet_can_puton(player_coords + direction):
+					player.move_toward_collide(direction, delta)
+				else:
+					# 有阻碍时保持WALKING状态并持续向右移动
+					player.state = player.State.WALKING
+					player.is_blown_by_fan = true  # 仍然视为被风吹动
+					player.move_toward_collide(Vector2i.RIGHT, delta)
 				player_inside = true
 			elif player.state == player.State.FLOATING && player_inside:
 				player.state = player.State.WALKING
+				player.is_blown_by_fan = false
 				player.make_inside()
 				player_inside = false
 		if obj_layer != null:
@@ -47,7 +55,19 @@ func _physics_process(delta: float) -> void:
 					## 是可移动的物体
 					# CARPET
 					if obj.type != Carpet.CarpetType.EXPAND:
-						obj.move(direction,true)
+						# 检测那个方向可不可以移动
+						if GameCore.now_action.carpet_can_puton(obj_coords + direction):
+							if obj.type == Carpet.CarpetType.VERTICAL:
+								if direction == Vector2i.LEFT or direction == Vector2i.RIGHT:
+									obj.move(direction,false)
+								elif direction == Vector2i.UP or direction == Vector2i.DOWN:
+									obj.move(direction,true)
+							elif obj.type == Carpet.CarpetType.HORIZONTAL:
+								if direction == Vector2i.LEFT or direction == Vector2i.RIGHT:
+									obj.move(direction,true)
+								elif direction == Vector2i.UP or direction == Vector2i.DOWN:
+									obj.move(direction,false)
+								
 
 static func get_instance_by_direction(pull_direction : Vector2i) -> Fan:
 	match pull_direction:

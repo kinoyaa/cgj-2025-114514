@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=4 uid="uid://dtghost0kiywc"]
+[gd_scene load_steps=17 format=4 uid="uid://cbqq2jqgxb7od"]
 
-[ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_lj4dc"]
-[ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_uha4h"]
-[ext_resource type="PackedScene" uid="uid://co7awtaa462mi" path="res://src/component/fan/fan_down.tscn" id="3_eiv0p"]
-[ext_resource type="PackedScene" uid="uid://dq4u8f0vqth6o" path="res://src/component/fan/fan_left.tscn" id="4_p0jh8"]
-[ext_resource type="PackedScene" uid="uid://bduri4t8cl51o" path="res://src/component/fan/fan_right.tscn" id="5_pf8k3"]
-[ext_resource type="PackedScene" uid="uid://dhkecru4ccueg" path="res://src/component/fan/fan_up.tscn" id="6_3xru1"]
-[ext_resource type="PackedScene" uid="uid://bwhhry6yipv0m" path="res://src/component/carpet/carpet.tscn" id="8_lm2nw"]
-[ext_resource type="PackedScene" uid="uid://co0sgbpfvqje2" path="res://src/component/player/player.tscn" id="8_m4xii"]
-[ext_resource type="PackedScene" uid="uid://df7gpcwe0nj1n" path="res://src/component/door/door.tscn" id="9_61d4j"]
-[ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://src/component/room/room.gd" id="9_aowqx"]
+[ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_q5okt"]
+[ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_dy4aa"]
+[ext_resource type="PackedScene" uid="uid://co7awtaa462mi" path="res://src/component/fan/fan_down.tscn" id="3_t48gu"]
+[ext_resource type="PackedScene" uid="uid://dq4u8f0vqth6o" path="res://src/component/fan/fan_left.tscn" id="4_4y8ei"]
+[ext_resource type="PackedScene" uid="uid://bduri4t8cl51o" path="res://src/component/fan/fan_right.tscn" id="5_mckch"]
+[ext_resource type="PackedScene" uid="uid://dhkecru4ccueg" path="res://src/component/fan/fan_up.tscn" id="6_k31tk"]
+[ext_resource type="PackedScene" uid="uid://df7gpcwe0nj1n" path="res://src/component/door/door.tscn" id="7_xaotw"]
+[ext_resource type="PackedScene" uid="uid://co0sgbpfvqje2" path="res://src/component/player/player.tscn" id="8_x7hn0"]
+[ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://src/component/room/room.gd" id="9_r5ncv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i3b0"]
-texture = ExtResource("2_uha4h")
+texture = ExtResource("2_dy4aa")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 1:0/0 = 0
@@ -21,13 +20,22 @@ texture_region_size = Vector2i(128, 128)
 2:0/0/custom_data_1 = "none"
 3:0/0 = 0
 4:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_0 = "carpet_expand"
+0:1/0/custom_data_1 = "none"
+1:1/0 = 0
+1:1/0/custom_data_0 = "carpet"
+1:1/0/custom_data_1 = "vertical"
+2:1/0 = 0
+2:1/0/custom_data_0 = "carpet"
+2:1/0/custom_data_1 = "horizontal"
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_5i3b0"]
 resource_name = "tools"
-scenes/1/scene = ExtResource("3_eiv0p")
-scenes/2/scene = ExtResource("4_p0jh8")
-scenes/3/scene = ExtResource("5_pf8k3")
-scenes/4/scene = ExtResource("6_3xru1")
+scenes/1/scene = ExtResource("3_t48gu")
+scenes/2/scene = ExtResource("4_4y8ei")
+scenes/3/scene = ExtResource("5_mckch")
+scenes/4/scene = ExtResource("6_k31tk")
 
 [sub_resource type="TileSet" id="TileSet_xqllj"]
 tile_size = Vector2i(128, 128)
@@ -60,7 +68,7 @@ fill_from = Vector2(0.4884, 0.53602)
 [node name="action1content" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
 y_sort_enabled = true
 color = Color(0.687806, 0.687806, 0.687807, 1)
-script = ExtResource("1_lj4dc")
+script = ExtResource("1_q5okt")
 player = NodePath("player")
 background_layer = NodePath("backgroundLayer")
 trap_layer = NodePath("trapLayer")
@@ -77,7 +85,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="backgroundLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAABAAAAAAADAAAAAAABAAEAAAAEAAAAAAABAAQAAAAAAAAAAAACAAAAAAADAAAAAAACAAEAAAAEAAAAAAACAAIAAAAAAAAAAAACAAQAAAAAAAAAAAADAAAAAAADAAAAAAADAAQAAAAAAAAAAAAEAAAAAAADAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAFAAAAAAADAAAAAAAFAAQAAAABAAAAAAAGAAAAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAABAAAAAAAGAAQAAAAAAAAAAAAHAAAAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAMAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAUAAAAAAAAAAAABAAAAAAADAAAAAAABAAEAAAAEAAAAAAABAAQAAAAAAAAAAAABAAUAAAABAAAAAAACAAAAAAADAAAAAAACAAEAAAAEAAAAAAACAAIAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAADAAAAAAADAAAAAAADAAQAAAAAAAAAAAAEAAAAAAADAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAFAAAAAAADAAAAAAAFAAQAAAABAAAAAAAGAAAAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAABAAAAAAAGAAQAAAAAAAAAAAAHAAAAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAMAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_xqllj")
 metadata/_edit_lock_ = true
 
@@ -88,7 +96,6 @@ centered = false
 
 [node name="trapLayer" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AAACAAIAAAACAAAAAAAFAAMAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_xqllj")
 metadata/_edit_lock_ = true
 
@@ -98,14 +105,11 @@ y_sort_enabled = true
 tile_set = SubResource("TileSet_xqllj")
 metadata/_edit_lock_ = true
 
-[node name="door" parent="objLayer" instance=ExtResource("9_61d4j")]
+[node name="door" parent="objLayer" instance=ExtResource("7_xaotw")]
 z_index = -1
 position = Vector2(1090, 445)
 
-[node name="Carpet" parent="objLayer" instance=ExtResource("8_lm2nw")]
-position = Vector2(447, 311)
-
-[node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_m4xii")]
+[node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_x7hn0")]
 z_index = 1
 position = Vector2(192, 439)
 collision_layer = 1
@@ -124,9 +128,17 @@ position_smoothing_enabled = true
 [node name="Room" type="StaticBody2D" parent="."]
 z_index = 1
 position = Vector2(0, 249)
-script = ExtResource("9_aowqx")
+script = ExtResource("9_r5ncv")
 size = Vector2i(1152, 516)
 metadata/_custom_type_script = "uid://d3q036pdl3epk"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(142, 507)
+texture = ExtResource("2_dy4aa")
+offset = Vector2(-2, -15)
+region_enabled = true
+region_rect = Rect2(0, 512, 256, 256)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(1115, 417)

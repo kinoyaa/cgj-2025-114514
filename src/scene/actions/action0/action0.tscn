@@ -1,20 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://3vg6qv26h10u"]
+[gd_scene load_steps=17 format=3 uid="uid://cov3robrvf7px"]
 
-[ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_4v32t"]
-[ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="2_yo0q2"]
-[ext_resource type="AudioStream" uid="uid://cptttig8t2h8d" path="res://src/assets/se/confirm.ogg" id="3_e6te8"]
-[ext_resource type="AudioStream" uid="uid://dk04ofjghewaw" path="res://src/assets/se/error.ogg" id="4_0482t"]
-[ext_resource type="PackedScene" uid="uid://mwmu0rdv6itj" path="res://src/scene/actions/action5/action5content.tscn" id="5_jnlww"]
-[ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="6_tk0xu"]
-[ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="7_horyg"]
-[ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="8_rrysq"]
-[ext_resource type="Environment" uid="uid://o81x6qjhqxd4" path="res://src/fx/environment.tres" id="9_jnlww"]
-[ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="9_w18uq"]
-[ext_resource type="Texture2D" uid="uid://diw3iffc63532" path="res://src/assets/icons/menu.png" id="11_iu61p"]
-[ext_resource type="PackedScene" uid="uid://dawv1x20rahhp" path="res://src/ui/menu_layer/menu_layer.tscn" id="12_iu61p"]
+[ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_phe6f"]
+[ext_resource type="PackedScene" uid="uid://guytleeix8ip" path="res://src/scene/actions/action1/action1.tscn" id="2_semsx"]
+[ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="3_duprv"]
+[ext_resource type="AudioStream" uid="uid://cptttig8t2h8d" path="res://src/assets/se/confirm.ogg" id="4_7k28s"]
+[ext_resource type="AudioStream" uid="uid://dk04ofjghewaw" path="res://src/assets/se/error.ogg" id="5_on4d8"]
+[ext_resource type="PackedScene" uid="uid://cbqq2jqgxb7od" path="res://src/scene/actions/action0/action0content.tscn" id="6_semsx"]
+[ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="7_sl8e3"]
+[ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="8_8jl8i"]
+[ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="9_v268o"]
+[ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="10_x8knj"]
+[ext_resource type="Environment" uid="uid://o81x6qjhqxd4" path="res://src/fx/environment.tres" id="11_y3xyr"]
+[ext_resource type="Texture2D" uid="uid://diw3iffc63532" path="res://src/assets/icons/menu.png" id="12_k2o6u"]
+[ext_resource type="PackedScene" uid="uid://dawv1x20rahhp" path="res://src/ui/menu_layer/menu_layer.tscn" id="13_wa2oa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
-shader = ExtResource("6_tk0xu")
+shader = ExtResource("7_sl8e3")
 shader_parameter/circle_size = 1.5
 shader_parameter/feather = 0.05
 shader_parameter/circle_position = Vector2(0.5, 0.5)
@@ -37,12 +38,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4v32t")
+script = ExtResource("1_phe6f")
 level_vp = NodePath("SubViewportContainer/level_vp")
-content_scene = NodePath("SubViewportContainer/level_vp/ActionContent")
-cursor_sound = ExtResource("2_yo0q2")
-click_sound = ExtResource("3_e6te8")
-retryOrQuit_sound = ExtResource("4_0482t")
+content_scene = NodePath("SubViewportContainer/level_vp/action1content")
+next_scene = ExtResource("2_semsx")
+cursor_sound = ExtResource("3_duprv")
+click_sound = ExtResource("4_7k28s")
+retryOrQuit_sound = ExtResource("5_on4d8")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -56,7 +58,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -74,7 +76,7 @@ handle_input_locally = false
 size = Vector2i(846, 494)
 render_target_update_mode = 4
 
-[node name="ActionContent" parent="SubViewportContainer/level_vp" instance=ExtResource("5_jnlww")]
+[node name="action1content" parent="SubViewportContainer/level_vp" instance=ExtResource("6_semsx")]
 
 [node name="cover_effect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -100,14 +102,15 @@ offset_right = 215.0
 offset_bottom = 581.0
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("7_horyg")
+script = ExtResource("8_8jl8i")
 text = "操作提示
 
 单击鼠标右键
 开始移动
 
-鼠标拖拽毯子"
-font = ExtResource("8_rrysq")
+再按一下可
+停下"
+font = ExtResource("9_v268o")
 font_size = 32
 alignment = 1
 vertical_alignment = 1
@@ -125,9 +128,9 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("7_horyg")
-text = "\"文案文案文案文案\""
-font = ExtResource("8_rrysq")
+script = ExtResource("8_8jl8i")
+text = "\"该起床了\""
+font = ExtResource("9_v268o")
 font_size = 76
 alignment = 1
 vertical_alignment = 1
@@ -142,9 +145,9 @@ offset_bottom = 152.0
 grow_horizontal = 2
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("7_horyg")
-text = "第五关"
-font = ExtResource("9_w18uq")
+script = ExtResource("8_8jl8i")
+text = "第零关"
+font = ExtResource("10_x8knj")
 font_size = 64
 alignment = 1
 vertical_alignment = 1
@@ -152,7 +155,7 @@ avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("9_jnlww")
+environment = ExtResource("11_y3xyr")
 
 [node name="menu" type="TextureButton" parent="." groups=["btn"]]
 unique_name_in_owner = true
@@ -165,7 +168,7 @@ offset_left = -96.0
 offset_top = 40.0
 offset_right = -37.0
 offset_bottom = 98.0
-texture_normal = ExtResource("11_iu61p")
+texture_normal = ExtResource("12_k2o6u")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -181,5 +184,5 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_ll36o")
 
-[node name="menu_layer" parent="." instance=ExtResource("12_iu61p")]
+[node name="menu_layer" parent="." instance=ExtResource("13_wa2oa")]
 unique_name_in_owner = true

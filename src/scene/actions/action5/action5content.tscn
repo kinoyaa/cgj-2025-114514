@@ -101,13 +101,13 @@ position = Vector2(448, 448)
 position = Vector2(192, 576)
 
 [node name="FanRight2" parent="objLayer" instance=ExtResource("5_agncu")]
-position = Vector2(321, 704)
+position = Vector2(320, 704)
 
 [node name="FanDown" parent="objLayer" instance=ExtResource("3_phabg")]
-position = Vector2(322, 315)
+position = Vector2(320, 320)
 
 [node name="FanUp" parent="objLayer" instance=ExtResource("6_qroi4")]
-position = Vector2(961, 712)
+position = Vector2(960, 704)
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("9_sa185")]
 z_index = 2

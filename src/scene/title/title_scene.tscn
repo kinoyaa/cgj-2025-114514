@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=50 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -28,13 +28,18 @@
 [ext_resource type="Texture2D" uid="uid://bjnlik0jm8c8r" path="res://src/assets/imgs/levels/I.png" id="23_trblc"]
 [ext_resource type="Texture2D" uid="uid://b5brogf6a18mx" path="res://src/assets/imgs/levels/II.png" id="24_qhjgy"]
 [ext_resource type="Texture2D" uid="uid://c5rsvjut1ijk6" path="res://src/assets/imgs/levels/III.png" id="25_2v3xh"]
+[ext_resource type="PackedScene" uid="uid://cov3robrvf7px" path="res://src/scene/actions/action0/action0.tscn" id="25_x6up2"]
 [ext_resource type="Texture2D" uid="uid://q51s1yvic4ae" path="res://src/assets/imgs/levels/IV.png" id="26_8iu45"]
+[ext_resource type="PackedScene" uid="uid://bqlw7ul5blg5r" path="res://src/scene/actions/action2/action2.tscn" id="27_2v3xh"]
 [ext_resource type="Texture2D" uid="uid://lss770p62l4f" path="res://src/assets/imgs/levels/IX.png" id="27_x6up2"]
 [ext_resource type="Texture2D" uid="uid://c2sfky66ae0e2" path="res://src/assets/imgs/levels/V.png" id="28_bkexh"]
+[ext_resource type="PackedScene" uid="uid://byxsf520efxps" path="res://src/scene/actions/action3/action3.tscn" id="29_8iu45"]
 [ext_resource type="Texture2D" uid="uid://0nh6oq2qqsq0" path="res://src/assets/imgs/levels/VI.png" id="29_8tq0q"]
 [ext_resource type="Texture2D" uid="uid://cl3bq2u38lx1g" path="res://src/assets/imgs/levels/VII.png" id="30_k00jk"]
 [ext_resource type="Texture2D" uid="uid://dphhgsfg3s30d" path="res://src/assets/imgs/levels/VIII.png" id="31_4fihh"]
+[ext_resource type="PackedScene" uid="uid://0ngidov702qx" path="res://src/scene/actions/action4/action4.tscn" id="31_x6up2"]
 [ext_resource type="Texture2D" uid="uid://pw3x1da8eqe6" path="res://src/assets/imgs/levels/X.png" id="32_rld5g"]
+[ext_resource type="PackedScene" uid="uid://3vg6qv26h10u" path="res://src/scene/actions/action5/action5.tscn" id="33_bkexh"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ytxhq"]
 blend_mode = 1
@@ -482,6 +487,7 @@ offset_bottom = 147.0
 grow_horizontal = 2
 texture_normal = ExtResource("20_eeybf")
 script = ExtResource("18_kfflm")
+action = ExtResource("25_x6up2")
 
 [node name="GridContainer" type="GridContainer" parent="level_popup/panel"]
 layout_mode = 1
@@ -510,43 +516,52 @@ action = ExtResource("22_ddpsu")
 layout_mode = 2
 texture_normal = ExtResource("24_qhjgy")
 script = ExtResource("18_kfflm")
+action = ExtResource("27_2v3xh")
 
 [node name="TextureButton3" type="TextureButton" parent="level_popup/panel/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("25_2v3xh")
 script = ExtResource("18_kfflm")
+action = ExtResource("29_8iu45")
 
 [node name="TextureButton4" type="TextureButton" parent="level_popup/panel/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("26_8iu45")
 script = ExtResource("18_kfflm")
+action = ExtResource("31_x6up2")
 
 [node name="TextureButton5" type="TextureButton" parent="level_popup/panel/GridContainer"]
 layout_mode = 2
 texture_normal = ExtResource("27_x6up2")
 script = ExtResource("18_kfflm")
+action = ExtResource("33_bkexh")
 
 [node name="TextureButton6" type="TextureButton" parent="level_popup/panel/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.675)
 layout_mode = 2
 texture_normal = ExtResource("28_bkexh")
 script = ExtResource("18_kfflm")
 
 [node name="TextureButton7" type="TextureButton" parent="level_popup/panel/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.675)
 layout_mode = 2
 texture_normal = ExtResource("29_8tq0q")
 script = ExtResource("18_kfflm")
 
 [node name="TextureButton8" type="TextureButton" parent="level_popup/panel/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.675)
 layout_mode = 2
 texture_normal = ExtResource("30_k00jk")
 script = ExtResource("18_kfflm")
 
 [node name="TextureButton9" type="TextureButton" parent="level_popup/panel/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.675)
 layout_mode = 2
 texture_normal = ExtResource("31_4fihh")
 script = ExtResource("18_kfflm")
 
 [node name="TextureButton10" type="TextureButton" parent="level_popup/panel/GridContainer"]
+self_modulate = Color(1, 1, 1, 0.675)
 layout_mode = 2
 texture_normal = ExtResource("32_rld5g")
 script = ExtResource("18_kfflm")

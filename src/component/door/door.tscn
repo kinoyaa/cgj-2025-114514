@@ -23,4 +23,5 @@ text = "🚪"
 position = Vector2(-85, -6)
 scale = Vector2(2.29688, 2.29688)
 color = Color(0.545098, 1, 1, 1)
+energy = 0.4
 texture = ExtResource("3_cyeau")

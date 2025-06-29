@@ -1,0 +1,106 @@
+[gd_scene load_steps=8 format=3 uid="uid://dawv1x20rahhp"]
+
+[ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="1_vk4t3"]
+[ext_resource type="Texture2D" uid="uid://q04nsad7dd8a" path="res://src/assets/icons/continue.png" id="2_vk4t3"]
+[ext_resource type="Texture2D" uid="uid://l6roxhl4m18f" path="res://src/assets/icons/restart.png" id="3_vk4t3"]
+[ext_resource type="Texture2D" uid="uid://jp3toun5ktjw" path="res://src/assets/icons/quit.png" id="4_vk4t3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm2lq"]
+shader = ExtResource("1_vk4t3")
+shader_parameter/strength = 3.3
+shader_parameter/mix_percentage = 0.3
+
+[sub_resource type="Gradient" id="Gradient_frdr3"]
+colors = PackedColorArray(1, 1, 1, 0.585, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ll36o"]
+gradient = SubResource("Gradient_frdr3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="menu_layer" type="CanvasLayer"]
+visible = false
+
+[node name="background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qm2lq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -71.0
+offset_right = 20.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="continue" type="TextureButton" parent="background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+texture_normal = ExtResource("2_vk4t3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="background/HBoxContainer/continue"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ll36o")
+
+[node name="retry" type="TextureButton" parent="background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("3_vk4t3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="background/HBoxContainer/retry"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ll36o")
+
+[node name="quit" type="TextureButton" parent="background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+texture_normal = ExtResource("4_vk4t3")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="background/HBoxContainer/quit"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ll36o")

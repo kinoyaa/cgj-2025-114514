@@ -22,6 +22,8 @@ enum State {
 	FLOATING,
 }
 
+var is_blown_by_fan: bool = false  # 是否被风扇吹动
+
 var last_walk_direction: Vector2i = Vector2i.RIGHT  # 记录最后行走方向
 
 @export var state: State = State.IDLE:
@@ -78,6 +80,11 @@ func _physics_process(delta: float) -> void:
 		if action.background_layer.get_cell_source_id(target) == -1:
 			state = State.IDLE
 			make_inside()
+	elif state == State.FLOATING && !is_blown_by_fan:
+		# 如果处于漂浮状态但没有被风扇吹动，则切换到空闲状态
+		state = State.IDLE
+		set_anim(Vector2i.ZERO, "Idle")
+		velocity = Vector2.ZERO
 	elif state == State.IDLE && current_anim_name != "Idle":
 		# 只在需要时设置空闲动画
 		set_anim(Vector2i.ZERO, "Idle")
@@ -90,6 +97,15 @@ func _keep_walk(delta):
 	move_toward_collide(Vector2i.RIGHT, delta)
 
 func move_toward_collide(direction: Vector2i, delta: float) -> void:
+	#if is_blown_by_fan:
+		## 被风吹且有阻碍时，检查右侧是否可以放置
+		#var forward_coords = _local_to_tilemap() + direction
+		#if GameCore.now_action.carpet_can_puton(forward_coords):
+			#velocity = Vector2i.RIGHT * speed * delta
+			#set_anim(Vector2i.RIGHT, "Walk")
+			#move_and_collide(velocity)
+			#return
+	
 	var target_coords = _local_to_tilemap() + direction
 	var target_position = tilemap.map_to_local(target_coords)
 	var room: Room = GameCore.now_action.room

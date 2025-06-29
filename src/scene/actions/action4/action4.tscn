@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0ngidov702qx"]
+[gd_scene load_steps=17 format=3 uid="uid://0ngidov702qx"]
 
 [ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_wfuoj"]
 [ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="2_32vwl"]
@@ -9,12 +9,10 @@
 [ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="6_b618n"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="7_uicqn"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="8_x8t4d"]
-[ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="9_ob3ac"]
-[ext_resource type="Texture2D" uid="uid://c4gsu0t1bsd41" path="res://src/assets/icons/setting.svg" id="10_gtjyd"]
-[ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="11_dp7dk"]
-[ext_resource type="Texture2D" uid="uid://bwcyvg5wa65rp" path="res://src/assets/icons/continue.svg" id="12_5ppbd"]
-[ext_resource type="Texture2D" uid="uid://x3w5pk8ldp5p" path="res://src/assets/icons/retry.svg" id="13_wv1um"]
-[ext_resource type="Texture2D" uid="uid://bc2n50rx73pu0" path="res://src/assets/icons/quit.svg" id="14_8tila"]
+[ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="10_ihnpf"]
+[ext_resource type="Environment" uid="uid://o81x6qjhqxd4" path="res://src/fx/environment.tres" id="11_ihnpf"]
+[ext_resource type="Texture2D" uid="uid://diw3iffc63532" path="res://src/assets/icons/menu.png" id="12_bm2ik"]
+[ext_resource type="PackedScene" uid="uid://dawv1x20rahhp" path="res://src/ui/menu_layer/menu_layer.tscn" id="13_bm2ik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
 shader = ExtResource("6_b618n")
@@ -24,13 +22,6 @@ shader_parameter/circle_position = Vector2(0.5, 0.5)
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
-[sub_resource type="Environment" id="Environment_csug5"]
-background_mode = 3
-background_canvas_max_layer = 1
-glow_enabled = true
-glow_intensity = 5.1
-glow_strength = 1.25
-
 [sub_resource type="Gradient" id="Gradient_frdr3"]
 colors = PackedColorArray(1, 1, 1, 0.585, 0, 0, 0, 0)
 
@@ -39,11 +30,6 @@ gradient = SubResource("Gradient_frdr3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm2lq"]
-shader = ExtResource("11_dp7dk")
-shader_parameter/strength = 3.3
-shader_parameter/mix_percentage = 0.3
 
 [node name="Action" type="Control" node_paths=PackedStringArray("level_vp", "content_scene")]
 layout_mode = 3
@@ -115,6 +101,7 @@ offset_top = 41.0
 offset_right = 215.0
 offset_bottom = 581.0
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("7_uicqn")
 text = "操作提示
 
@@ -129,23 +116,19 @@ vertical_alignment = 1
 avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
-[node name="Control" type="VBoxContainer" parent="CanvasLayer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="MouseAvoidText3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -131.0
-offset_bottom = -22.0
+offset_top = -147.0
 grow_horizontal = 2
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="MouseAvoidText" type="Control" parent="CanvasLayer/Control"]
-layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("7_uicqn")
-text = "第四关"
+text = "\"达达答滴答答\""
 font = ExtResource("8_x8t4d")
 font_size = 76
 alignment = 1
@@ -153,12 +136,25 @@ vertical_alignment = 1
 avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
-[node name="camera_slider" parent="CanvasLayer/Control" node_paths=PackedStringArray("viewport") instance=ExtResource("9_ob3ac")]
-layout_mode = 2
-viewport = NodePath("../../../SubViewportContainer/level_vp")
+[node name="MouseAvoidText2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 152.0
+grow_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("7_uicqn")
+text = "第四关"
+font = ExtResource("10_ihnpf")
+font_size = 64
+alignment = 1
+vertical_alignment = 1
+avoid_radius = 150.0
+metadata/_custom_type_script = "uid://cjilub4hjm20c"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_csug5")
+environment = ExtResource("11_ihnpf")
 
 [node name="menu" type="TextureButton" parent="." groups=["btn"]]
 unique_name_in_owner = true
@@ -171,7 +167,7 @@ offset_left = -96.0
 offset_top = 40.0
 offset_right = -37.0
 offset_bottom = 98.0
-texture_normal = ExtResource("10_gtjyd")
+texture_normal = ExtResource("12_bm2ik")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -187,88 +183,5 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_ll36o")
 
-[node name="menu_layer" type="CanvasLayer" parent="."]
+[node name="menu_layer" parent="." instance=ExtResource("13_bm2ik")]
 unique_name_in_owner = true
-visible = false
-
-[node name="background" type="ColorRect" parent="menu_layer"]
-material = SubResource("ShaderMaterial_qm2lq")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="menu_layer/background"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -71.0
-offset_right = 20.0
-offset_bottom = 71.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 80
-alignment = 1
-
-[node name="continue" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-texture_normal = ExtResource("12_5ppbd")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/continue"]
-visible = false
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_ll36o")
-
-[node name="retry" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-texture_normal = ExtResource("13_wv1um")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/retry"]
-visible = false
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_ll36o")
-
-[node name="quit" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-texture_normal = ExtResource("14_8tila")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/quit"]
-visible = false
-z_index = -1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_ll36o")
