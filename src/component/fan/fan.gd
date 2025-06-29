@@ -35,7 +35,12 @@ func _physics_process(delta: float) -> void:
 			if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
 				player.state = player.State.FLOATING
 				player.is_blown_by_fan = true
-				if GameCore.now_action.carpet_can_puton(player_coords + direction):
+				var passable := true
+				for node in obj_layer.get_children():
+					if target_coords == obj_layer.local_to_map(node.global_position) && node is Carpet && node.type != Carpet.CarpetType.EXPAND:
+						#if GameCore.now_action.carpet_can_puton(player_coords + direction):
+						passable = false
+				if passable:
 					player.state = player.State.FLOATING
 					player.move_toward_collide(direction, delta)
 				else:
