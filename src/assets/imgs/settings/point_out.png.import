@@ -2,24 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0nh6oq2qqsq0"
-path="res://.godot/imported/VI.png-faec750d23143ce67cefd277a171b690.ctex"
+uid="uid://408t0f2sxr0f"
+path="res://.godot/imported/point_out.png-10d4f126ad6339b54e02f97a18c9a760.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/ui/levels/VI.png"
-dest_files=["res://.godot/imported/VI.png-faec750d23143ce67cefd277a171b690.ctex"]
+source_file="res://src/assets/imgs/settings/point_out.png"
+dest_files=["res://.godot/imported/point_out.png-10d4f126ad6339b54e02f97a18c9a760.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -27,10 +25,6 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/channel_remap/red=0
-process/channel_remap/green=1
-process/channel_remap/blue=2
-process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

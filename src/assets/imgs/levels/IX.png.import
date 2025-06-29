@@ -2,24 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl3bq2u38lx1g"
-path="res://.godot/imported/VII.png-dc73124c4a8a88885186cd787fcde403.ctex"
+uid="uid://lss770p62l4f"
+path="res://.godot/imported/IX.png-4acb6f65d8530650258568b870364d69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/ui/levels/VII.png"
-dest_files=["res://.godot/imported/VII.png-dc73124c4a8a88885186cd787fcde403.ctex"]
+source_file="res://src/assets/imgs/levels/IX.png"
+dest_files=["res://.godot/imported/IX.png-4acb6f65d8530650258568b870364d69.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/uastc_level=0
-compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -27,10 +25,6 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/channel_remap/red=0
-process/channel_remap/green=1
-process/channel_remap/blue=2
-process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
