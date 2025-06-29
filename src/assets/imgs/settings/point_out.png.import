@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2sfky66ae0e2"
-path="res://.godot/imported/V.png-f2cc470fe0ae16e2cf79f78e7ef6e928.ctex"
+uid="uid://408t0f2sxr0f"
+path="res://.godot/imported/point_out.png-10d4f126ad6339b54e02f97a18c9a760.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/ui/levels/V.png"
-dest_files=["res://.godot/imported/V.png-f2cc470fe0ae16e2cf79f78e7ef6e928.ctex"]
+source_file="res://src/assets/imgs/settings/point_out.png"
+dest_files=["res://.godot/imported/point_out.png-10d4f126ad6339b54e02f97a18c9a760.ctex"]
 
 [params]
 
