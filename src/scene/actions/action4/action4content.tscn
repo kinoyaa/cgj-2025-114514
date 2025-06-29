@@ -87,6 +87,7 @@ metadata/_edit_lock_ = true
 [node name="objLayer" type="TileMapLayer" parent="."]
 z_index = 2
 y_sort_enabled = true
+tile_map_data = PackedByteArray("AAABAAQAAQAAAAAABAA=")
 tile_set = SubResource("TileSet_xqllj")
 metadata/_edit_lock_ = true
 
@@ -97,9 +98,6 @@ position = Vector2(1090, 446)
 [node name="Carpet" parent="objLayer" instance=ExtResource("8_e1g3o")]
 position = Vector2(448, 448)
 type = 2
-
-[node name="FanRight" parent="objLayer" instance=ExtResource("5_2og6l")]
-position = Vector2(192, 576)
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("9_2forh")]
 z_index = 2

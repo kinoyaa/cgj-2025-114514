@@ -11,7 +11,7 @@
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="8_x8t4d"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="10_ihnpf"]
 [ext_resource type="Environment" uid="uid://o81x6qjhqxd4" path="res://src/fx/environment.tres" id="11_ihnpf"]
-[ext_resource type="Shader" uid="uid://3ahj8v5f0iu1" path="res://src/assets/shader/shake.gdshader" id="11_kul5t"]
+[ext_resource type="Shader" path="res://src/assets/shader/shake.gdshader" id="11_kul5t"]
 [ext_resource type="Texture2D" uid="uid://bs5d6jdc4lysk" path="res://src/assets/imgs/tips2.png" id="11_qkkyy"]
 [ext_resource type="Texture2D" uid="uid://diw3iffc63532" path="res://src/assets/icons/menu.png" id="12_bm2ik"]
 [ext_resource type="PackedScene" uid="uid://dawv1x20rahhp" path="res://src/ui/menu_layer/menu_layer.tscn" id="13_bm2ik"]

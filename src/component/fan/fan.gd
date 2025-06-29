@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 					# 有阻碍时保持WALKING状态并持续向右移动
 					player.state = player.State.WALKING
 					player.is_blown_by_fan = false
-					player.make_inside()
+					#player.make_inside()
 					player_inside = false
 			elif player_inside:
 				if player.state == player.State.FLOATING:

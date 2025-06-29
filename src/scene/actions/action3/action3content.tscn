@@ -80,7 +80,7 @@ centered = false
 
 [node name="trapLayer" type="TileMapLayer" parent="."]
 z_index = 1
-tile_map_data = PackedByteArray("AAACAAMAAAACAAAAAAACAAIAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAMAAAACAAAAAAACAAIAAAACAAAAAAADAAMAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_xqllj")
 metadata/_edit_lock_ = true
 
