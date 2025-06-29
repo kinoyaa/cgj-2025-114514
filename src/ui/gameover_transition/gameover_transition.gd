@@ -1,10 +1,13 @@
-extends ColorRect
+extends CanvasLayer
 
 signal finished
 
 @export var shrink_time:float = 0.6
 @export var expand_delay_time:float = 0.5
 @export var expand_time:float = 0.4
+@export var target_scene:Node
+
+@export var color_rect:ColorRect
 
 var playing := false : set = set_playing
 
@@ -21,17 +24,30 @@ func play(p_globalPos:Vector2):
 		playing = false
 	
 	playing = true
-	var localPos = get_transform().affine_inverse() * p_globalPos
-	material.set_shader_parameter("circle_size", 1.1)
-	material.set_shader_parameter("circle_position", localPos / size)
+	var localPos = color_rect.get_transform().affine_inverse() * p_globalPos
+	color_rect.material.set_shader_parameter("circle_size", 1.1)
+	color_rect.material.set_shader_parameter("circle_position", localPos / color_rect.size)
 	
 	tween = create_tween()
-	tween.tween_property(material, "shader_parameter/circle_size", -0.05, shrink_time)
-	await tween.step_finished
-	get_tree().change_scene_to_file("res://src/scene/title/title_scene.tscn")
+	tween.tween_property(color_rect.material, "shader_parameter/circle_size", -0.05, shrink_time)
+	tween.step_finished.connect(_on_tween_step_finished)
+	
 	tween = create_tween()
-	tween.tween_property(material, "shader_parameter/circle_size", 1.1, expand_time).set_delay(expand_delay_time)
+	tween.tween_property(color_rect.material, "shader_parameter/circle_size", 1.1, expand_time).set_delay(expand_delay_time)
 	tween.finished.connect(_on_tween_finished)
+
+func _on_tween_step_finished():
+	tween.step_finished.disconnect(_on_tween_step_finished)
+	if target_scene:
+		var prevScene = get_tree().current_scene
+		get_tree().root.remove_child(prevScene)
+		
+		target_scene.tree_entered.connect(_on_current_scene_tree_entered, CONNECT_ONE_SHOT)
+		get_tree().root.add_child(target_scene)
+		get_tree().root.update_mouse_cursor_state()
+
+func _on_current_scene_tree_entered():
+	get_tree().current_scene = target_scene
 
 func _on_tween_finished():
 	playing = false
