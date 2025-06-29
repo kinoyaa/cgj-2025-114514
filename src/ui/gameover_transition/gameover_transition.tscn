@@ -11,7 +11,12 @@ shader_parameter/circle_position = Vector2(0.5, 0.5)
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
 
-[node name="gameover_transition" type="ColorRect"]
+[node name="gameover_transition" type="CanvasLayer" node_paths=PackedStringArray("target_scene")]
+layer = 2
+script = ExtResource("2_rggv8")
+target_scene = NodePath("color_rect")
+
+[node name="color_rect" type="ColorRect" parent="."]
 visible = false
 material = SubResource("ShaderMaterial_rggv8")
 anchors_preset = 15
