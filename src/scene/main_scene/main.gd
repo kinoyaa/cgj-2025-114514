@@ -20,8 +20,7 @@ func set_param(vname : String,value):
 func _on_example_gameover() -> void:
 	var level = level_vp.get_child(0)
 	var vpPos = (level_vp.canvas_transform * level_vp.global_canvas_transform) * level.player.get_global_position()
-	print(level.player.get_global_position(), " vp pos = ", vpPos, " p = ", level_vp.canvas_transform.origin)
 	var scene:PackedScene = load(scene_file_path)
 	assert(scene)
 	gameover_transition.target_scene = scene.instantiate()
-	gameover_transition.play(vpPos)
+	gameover_transition.play(vpPos + level_vp.get_parent().position)

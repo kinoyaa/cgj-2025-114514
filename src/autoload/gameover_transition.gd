@@ -23,10 +23,10 @@ func _init():
 	layer = 2
 	color_rect = preload("res://src/ui/gameover_transition/gameover_transition_color_rect.tscn").instantiate()
 	add_child(color_rect)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func play(p_globalPos:Vector2):
 	if playing:
-		return
 		playing = false
 	
 	playing = true
@@ -49,6 +49,8 @@ func _on_tween_step_finished(_id):
 		target_scene.tree_entered.connect(_on_current_scene_tree_entered, CONNECT_ONE_SHOT)
 		get_tree().root.add_child(target_scene)
 		get_tree().root.update_mouse_cursor_state()
+	
+	get_tree().paused = false
 
 func _on_current_scene_tree_entered():
 	get_tree().current_scene = target_scene
@@ -68,4 +70,5 @@ func set_playing(p_value):
 			tween = null
 	
 	playing = p_value
+	get_tree().paused = playing
 	color_rect.visible = playing
