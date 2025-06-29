@@ -112,7 +112,9 @@ func _input(event: InputEvent) -> void:
 					elif target_object is Fan:
 						if are_directions_adjacent(target_object.direction,pull_direction):
 							var new_instance = Fan.get_instance_by_direction(pull_direction)
+							new_instance.player_inside = target_object.player_inside
 							new_instance.position = target_object.position
+							new_instance.radius = target_object.radius
 							obj_layer.add_child(new_instance)
 							target_object.queue_free()
 				# 图块形式的
