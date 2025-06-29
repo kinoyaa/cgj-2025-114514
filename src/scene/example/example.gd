@@ -65,6 +65,10 @@ func _process(delta: float) -> void:
 			
 			if !find:
 				player.die()
+	for node in obj_layer.get_children():
+		if node is Door:
+			if player._local_to_tilemap() == obj_layer.local_to_map(node.global_position):
+				won.emit()
 	
 
 func _input(event: InputEvent) -> void:

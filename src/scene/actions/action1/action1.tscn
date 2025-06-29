@@ -1,38 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://guytleeix8ip"]
 
 [ext_resource type="PackedScene" uid="uid://dtghost0kiywc" path="res://src/scene/actions/action1/action1content.tscn" id="1_gn1a8"]
+[ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_kybrk"]
 [ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="3_c1s8u"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="4_5yq5l"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="5_6nh4f"]
 [ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_uil2g"]
-
-[sub_resource type="GDScript" id="GDScript_gn1a8"]
-script/source = "extends Control
-
-## TODO 失败特效
-
-@export var level_vp:SubViewport
-@export var gameover_transition:Node
-
-@onready var cover_effect: ColorRect = %cover_effect
-
-func _ready() -> void:
-	resized.connect(
-		func():
-			set_param(\"screen_width\",size.x)
-			set_param(\"screen_height\",size.y)
-	)
-
-func set_param(vname : String,value):
-	cover_effect.material.set_shader_parameter(vname,value)
-	pass
-
-func _on_example_gameover() -> void:
-	var level = level_vp.get_child(0)
-	var vpPos = (level_vp.canvas_transform * level_vp.global_canvas_transform) * level.player.get_global_position()
-	print(level.player.get_global_position(), \" vp pos = \", vpPos, \" p = \", level_vp.canvas_transform.origin)
-	gameover_transition.play(vpPos)
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
 shader = ExtResource("3_c1s8u")
@@ -49,16 +22,16 @@ glow_enabled = true
 glow_intensity = 5.1
 glow_strength = 1.25
 
-[node name="Main" type="Control" node_paths=PackedStringArray("level_vp", "gameover_transition")]
+[node name="Main2" type="Control" node_paths=PackedStringArray("level_vp", "content_scene")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_gn1a8")
+script = ExtResource("1_kybrk")
 level_vp = NodePath("SubViewportContainer/level_vp")
-gameover_transition = NodePath("")
+content_scene = NodePath("SubViewportContainer/level_vp/action1content")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
