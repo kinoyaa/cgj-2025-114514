@@ -2,6 +2,9 @@ extends Node
 
 var unuse_sound_player_list := []
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func play_sound(p_sound:AudioStream):
 	if p_sound == null:
 		return

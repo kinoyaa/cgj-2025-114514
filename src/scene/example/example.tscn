@@ -55,7 +55,7 @@ colors = PackedColorArray(0, 0, 0, 1, 0.415094, 0.415094, 0.415094, 0.584906, 1,
 gradient = SubResource("Gradient_55fax")
 fill_to = Vector2(0, 1)
 
-[node name="Example" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
+[node name="ActionContent" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
 y_sort_enabled = true
 script = ExtResource("1_cx7bj")
 player = NodePath("player")

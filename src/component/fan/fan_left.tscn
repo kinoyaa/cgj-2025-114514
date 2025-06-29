@@ -10,11 +10,11 @@ direction = Vector2i(-1, 0)
 metadata/_custom_type_script = "uid://bhn1ta2ccdhdu"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -105)
+position = Vector2(0, -70)
 texture = ExtResource("2_ax1jl")
 region_enabled = true
 region_rect = Rect2(256, 256, 128, 256)
 
 [node name="speedLineFX" parent="." instance=ExtResource("3_g734b")]
-position = Vector2(-20, -114)
+position = Vector2(-23, -55)
 scale = Vector2(-0.5, 0.5)
