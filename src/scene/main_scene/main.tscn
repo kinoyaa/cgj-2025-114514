@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq172ohp7raos"]
+[gd_scene load_steps=9 format=3 uid="uid://cq172ohp7raos"]
 
 [ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_1p2jo"]
 [ext_resource type="PackedScene" uid="uid://cmr0ldbxnrb8s" path="res://src/scene/example/example.tscn" id="1_6pe3w"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="6_4d420"]
 [ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_u5mvd"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="7_01q62"]
-[ext_resource type="PackedScene" uid="uid://n4fpt6hnh0cc" path="res://src/ui/gameover_transition/gameover_transition.tscn" id="7_4d420"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
 shader = ExtResource("2_giqa4")
@@ -23,7 +22,7 @@ glow_enabled = true
 glow_intensity = 5.1
 glow_strength = 1.25
 
-[node name="Main" type="Control" node_paths=PackedStringArray("level_vp", "gameover_transition")]
+[node name="Main" type="Control" node_paths=PackedStringArray("level_vp")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +31,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1p2jo")
 level_vp = NodePath("SubViewportContainer/level_vp")
-gameover_transition = NodePath("CanvasLayer/gameover_transition")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -128,8 +126,6 @@ metadata/_custom_type_script = "uid://cjilub4hjm20c"
 [node name="camera_slider" parent="CanvasLayer/Control" node_paths=PackedStringArray("viewport") instance=ExtResource("6_u5mvd")]
 layout_mode = 2
 viewport = NodePath("../../../SubViewportContainer/level_vp")
-
-[node name="gameover_transition" parent="CanvasLayer" instance=ExtResource("7_4d420")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")

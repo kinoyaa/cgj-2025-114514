@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://guytleeix8ip"]
+[gd_scene load_steps=9 format=3 uid="uid://guytleeix8ip"]
 
 [ext_resource type="PackedScene" uid="uid://dtghost0kiywc" path="res://src/scene/actions/action1/action1content.tscn" id="1_gn1a8"]
 [ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="3_c1s8u"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="4_5yq5l"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="5_6nh4f"]
 [ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_uil2g"]
-[ext_resource type="PackedScene" uid="uid://n4fpt6hnh0cc" path="res://src/ui/gameover_transition/gameover_transition.tscn" id="7_uoaf1"]
 
 [sub_resource type="GDScript" id="GDScript_gn1a8"]
 script/source = "extends Control
@@ -59,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_gn1a8")
 level_vp = NodePath("SubViewportContainer/level_vp")
-gameover_transition = NodePath("CanvasLayer/gameover_transition")
+gameover_transition = NodePath("")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -155,8 +154,6 @@ metadata/_custom_type_script = "uid://cjilub4hjm20c"
 [node name="camera_slider" parent="CanvasLayer/Control" node_paths=PackedStringArray("viewport") instance=ExtResource("6_uil2g")]
 layout_mode = 2
 viewport = NodePath("../../../SubViewportContainer/level_vp")
-
-[node name="gameover_transition" parent="CanvasLayer" instance=ExtResource("7_uoaf1")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")
