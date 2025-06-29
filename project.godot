@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="守梦之屋"
-run/main_scene="uid://cq172ohp7raos"
+run/main_scene="uid://f4jpf1a1j1wi"
 config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/image="uid://f8m5bt07j6fm"
 config/icon="res://icon.svg"
 
 [autoload]

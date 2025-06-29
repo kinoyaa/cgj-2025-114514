@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		if direction == Vector2i.RIGHT:
 			rect = Rect2i(fan_coords.x + 1, fan_coords.y, radius, 1).abs()
 		if direction == Vector2i.UP:
-			rect = Rect2i(fan_coords.x, fan_coords.y - 1, 1, -radius).abs()
+			rect = Rect2i(fan_coords.x, fan_coords.y, 1, -radius).abs()
 		if direction == Vector2i.DOWN:
 			rect = Rect2i(fan_coords.x, fan_coords.y + 1, 1, radius).abs()
 		if player != null:

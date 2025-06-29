@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://bfy2ibvqqb8sb" path="res://src/assets/se/cancel2.ogg" id="14_lqg17"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="15_14e8x"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
-[ext_resource type="Script" uid="uid://jnbunb5w3nav" path="res://src/scene/title/level_selecting_button.gd" id="18_kfflm"]
+[ext_resource type="Script" path="res://src/scene/title/level_selecting_button.gd" id="18_kfflm"]
 [ext_resource type="Texture2D" uid="uid://d3vjkeh7wvkgp" path="res://src/ui/levels/headline.png" id="19_ih4jv"]
 [ext_resource type="Texture2D" uid="uid://dky72kk1kir7t" path="res://src/ui/levels/0.png" id="20_eeybf"]
 [ext_resource type="PackedScene" uid="uid://guytleeix8ip" path="res://src/scene/actions/action1/action1.tscn" id="22_ddpsu"]
