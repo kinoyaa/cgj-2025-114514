@@ -33,19 +33,20 @@ func _physics_process(delta: float) -> void:
 			var target_position: Vector2 = obj_layer.map_to_local(target_coords)
 			var room: Room = GameCore.now_action.room
 			if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
-				player.state = player.State.FLOATING
 				player.is_blown_by_fan = true
 				if GameCore.now_action.carpet_can_puton(player_coords + direction):
+					player_inside = true
 					player.state = player.State.FLOATING
 					player.move_toward_collide(direction, delta)
-				else:
+				elif player_inside:
 					# 有阻碍时保持WALKING状态并持续向右移动
 					player.state = player.State.WALKING
-					#player.is_blown_by_fan = true  # 仍然视为被风吹动
-					#player.move_toward_collide(Vector2i.RIGHT, delta)
-				player_inside = true
-			elif player.state == player.State.FLOATING && player_inside:
-				player.state = player.State.WALKING
+					player.is_blown_by_fan = false
+					player.make_inside()
+					player_inside = false
+			elif player_inside:
+				if player.state == player.State.FLOATING:
+					player.state = player.State.WALKING
 				player.is_blown_by_fan = false
 				player.make_inside()
 				player_inside = false

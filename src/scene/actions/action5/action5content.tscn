@@ -108,6 +108,7 @@ position = Vector2(320, 320)
 
 [node name="FanUp" parent="objLayer" instance=ExtResource("6_qroi4")]
 position = Vector2(960, 704)
+radius = 1
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("9_sa185")]
 z_index = 2

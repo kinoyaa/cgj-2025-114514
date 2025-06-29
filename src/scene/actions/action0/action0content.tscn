@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cbqq2jqgxb7od"]
+[gd_scene load_steps=15 format=4 uid="uid://cbqq2jqgxb7od"]
 
 [ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_q5okt"]
 [ext_resource type="Texture2D" uid="uid://cvcbog4ssnjel" path="res://src/assets/imgs/sprites.png" id="2_dy4aa"]
@@ -55,15 +55,6 @@ colors = PackedColorArray(0, 0, 0, 1, 0.415094, 0.415094, 0.415094, 0.584906, 1,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_57smy"]
 gradient = SubResource("Gradient_55fax")
 fill_to = Vector2(0, 1)
-
-[sub_resource type="Gradient" id="Gradient_1h743"]
-offsets = PackedFloat32Array(0, 0.563025)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1h743"]
-gradient = SubResource("Gradient_1h743")
-fill = 1
-fill_from = Vector2(0.4884, 0.53602)
 
 [node name="action1content" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
 y_sort_enabled = true
@@ -139,9 +130,3 @@ texture = ExtResource("2_dy4aa")
 offset = Vector2(-2, -15)
 region_enabled = true
 region_rect = Rect2(0, 512, 256, 256)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1115, 417)
-scale = Vector2(5.6875, 5.6875)
-color = Color(0.545098, 1, 1, 1)
-texture = SubResource("GradientTexture2D_1h743")
