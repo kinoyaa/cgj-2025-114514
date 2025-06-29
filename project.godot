@@ -25,6 +25,7 @@ user_setting="*res://src/autoload/user_setting.gd"
 volume_setting="*res://src/autoload/volume_setting.gd"
 music_manager="*res://src/autoload/music_manager.gd"
 sound_bus="*res://src/autoload/sound_bus.gd"
+gameover_transition="*res://src/autoload/gameover_transition.gd"
 
 [dialogic]
 

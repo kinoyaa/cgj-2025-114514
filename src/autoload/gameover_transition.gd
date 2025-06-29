@@ -7,7 +7,7 @@ signal finished
 @export var expand_time:float = 0.4
 @export var target_scene:Node
 
-@export var color_rect:ColorRect
+var color_rect:ColorRect
 
 var playing := false : set = set_playing
 
@@ -19,8 +19,14 @@ var tween:Tween
 		#if p_event.is_released():
 			#play(get_global_mouse_position())
 
+func _init():
+	layer = 2
+	color_rect = preload("res://src/ui/gameover_transition/gameover_transition_color_rect.tscn").instantiate()
+	add_child(color_rect)
+
 func play(p_globalPos:Vector2):
 	if playing:
+		return
 		playing = false
 	
 	playing = true
@@ -30,13 +36,11 @@ func play(p_globalPos:Vector2):
 	
 	tween = create_tween()
 	tween.tween_property(color_rect.material, "shader_parameter/circle_size", -0.05, shrink_time)
-	tween.step_finished.connect(_on_tween_step_finished)
-	
-	tween = create_tween()
 	tween.tween_property(color_rect.material, "shader_parameter/circle_size", 1.1, expand_time).set_delay(expand_delay_time)
+	tween.step_finished.connect(_on_tween_step_finished)
 	tween.finished.connect(_on_tween_finished)
 
-func _on_tween_step_finished():
+func _on_tween_step_finished(_id):
 	tween.step_finished.disconnect(_on_tween_step_finished)
 	if target_scene:
 		var prevScene = get_tree().current_scene
@@ -64,4 +68,4 @@ func set_playing(p_value):
 			tween = null
 	
 	playing = p_value
-	visible = playing
+	color_rect.visible = playing
