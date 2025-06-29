@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=45 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -20,6 +20,7 @@
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
 [ext_resource type="Texture2D" uid="uid://wmkavey0bqw0" path="res://src/assets/imgs/settings/slider.png" id="17_eeybf"]
 [ext_resource type="Script" uid="uid://jnbunb5w3nav" path="res://src/scene/title/level_selecting_button.gd" id="18_kfflm"]
+[ext_resource type="Texture2D" uid="uid://q0sraanxb32h" path="res://src/assets/imgs/settings/line.png" id="18_qa21f"]
 [ext_resource type="Texture2D" uid="uid://d3vjkeh7wvkgp" path="res://src/assets/imgs/levels/headline.png" id="19_ih4jv"]
 [ext_resource type="Texture2D" uid="uid://dky72kk1kir7t" path="res://src/assets/imgs/levels/0.png" id="20_eeybf"]
 [ext_resource type="Texture2D" uid="uid://408t0f2sxr0f" path="res://src/assets/imgs/settings/point_out.png" id="20_qa21f"]
@@ -50,6 +51,15 @@ shader_parameter/mix_percentage = 0.3
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa21f"]
 texture = ExtResource("16_ih4jv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trblc"]
+texture = ExtResource("18_qa21f")
+texture_margin_left = 16.0
+texture_margin_right = 16.0
+expand_margin_left = 4.0
+expand_margin_top = 11.0
+expand_margin_right = 4.0
+expand_margin_bottom = 11.0
 
 [sub_resource type="Gradient" id="Gradient_ytxhq"]
 interpolation_mode = 1
@@ -320,6 +330,7 @@ offset_bottom = 142.0
 grow_horizontal = 2
 theme_override_icons/grabber = ExtResource("17_eeybf")
 theme_override_icons/grabber_highlight = ExtResource("17_eeybf")
+theme_override_styles/slider = SubResource("StyleBoxTexture_trblc")
 max_value = 1.0
 step = 0.01
 
@@ -334,6 +345,7 @@ offset_bottom = 316.0
 grow_horizontal = 2
 theme_override_icons/grabber = ExtResource("17_eeybf")
 theme_override_icons/grabber_highlight = ExtResource("17_eeybf")
+theme_override_styles/slider = SubResource("StyleBoxTexture_trblc")
 max_value = 1.0
 step = 0.01
 
