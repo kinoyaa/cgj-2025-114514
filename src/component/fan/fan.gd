@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
 			var target_position: Vector2 = obj_layer.map_to_local(target_coords)
 			var room: Room = GameCore.now_action.room
 			if rect.has_point(player_coords) && Rect2i(room.position, room.size).has_point(target_position):
+				player_inside = true
 				player.is_blown_by_fan = true
 				var passable := true
 				for node in obj_layer.get_children():
