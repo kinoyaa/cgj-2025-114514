@@ -11,14 +11,6 @@ script = ExtResource("1_65ef3")
 visible = false
 texture = ExtResource("1_lh42h")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -64.0
-offset_top = -67.0
-offset_right = 68.0
-offset_bottom = 99.0
-theme_override_font_sizes/font_size = 121
-text = "🚪"
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(-85, -6)
 scale = Vector2(2.29688, 2.29688)

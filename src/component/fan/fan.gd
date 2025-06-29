@@ -36,12 +36,13 @@ func _physics_process(delta: float) -> void:
 				player.state = player.State.FLOATING
 				player.is_blown_by_fan = true
 				if GameCore.now_action.carpet_can_puton(player_coords + direction):
+					player.state = player.State.FLOATING
 					player.move_toward_collide(direction, delta)
 				else:
 					# 有阻碍时保持WALKING状态并持续向右移动
 					player.state = player.State.WALKING
-					player.is_blown_by_fan = true  # 仍然视为被风吹动
-					player.move_toward_collide(Vector2i.RIGHT, delta)
+					#player.is_blown_by_fan = true  # 仍然视为被风吹动
+					#player.move_toward_collide(Vector2i.RIGHT, delta)
 				player_inside = true
 			elif player.state == player.State.FLOATING && player_inside:
 				player.state = player.State.WALKING

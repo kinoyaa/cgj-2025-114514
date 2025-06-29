@@ -103,10 +103,10 @@ z_index = -1
 position = Vector2(1090, 445)
 
 [node name="Carpet" parent="objLayer" instance=ExtResource("8_lm2nw")]
-position = Vector2(447, 311)
+position = Vector2(448, 320)
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_m4xii")]
-z_index = 1
+z_index = 2
 position = Vector2(192, 439)
 collision_layer = 1
 action = NodePath("..")
