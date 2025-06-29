@@ -66,6 +66,26 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_7ipjn")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -651.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 656.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="mid_layer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -98,6 +118,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -50.0
+offset_right = 320.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_fe6da")

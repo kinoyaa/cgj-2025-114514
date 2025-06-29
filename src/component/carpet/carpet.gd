@@ -15,11 +15,11 @@ enum CarpetType{
 		await get_tree().create_timer(duration_speed/2).timeout
 		match type:
 			CarpetType.EXPAND:
-				sprite.frame = 5
-			CarpetType.VERTICAL:
 				sprite.frame = 6
-			CarpetType.HORIZONTAL:
+			CarpetType.VERTICAL:
 				sprite.frame = 7
+			CarpetType.HORIZONTAL:
+				sprite.frame = 8
 
 var moving_tween: Tween = null
 @onready var sprite: Sprite2D = %sprite

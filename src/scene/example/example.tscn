@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cmr0ldbxnrb8s"]
+[gd_scene load_steps=15 format=4 uid="uid://cmr0ldbxnrb8s"]
 
 [ext_resource type="PackedScene" uid="uid://co0sgbpfvqje2" path="res://src/component/player/player.tscn" id="1_cf133"]
 [ext_resource type="Script" uid="uid://ivg3asmsofcm" path="res://src/scene/example/example.gd" id="1_cx7bj"]
@@ -46,7 +46,16 @@ custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_5i3b0")
 sources/1 = SubResource("TileSetScenesCollectionSource_5i3b0")
 
-[node name="Example" type="Node2D" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
+[sub_resource type="Gradient" id="Gradient_55fax"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.4947589, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.41509435, 0.41509435, 0.41509435, 0.5849056, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_57smy"]
+gradient = SubResource("Gradient_55fax")
+fill_to = Vector2(0, 1)
+
+[node name="Example" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
 y_sort_enabled = true
 script = ExtResource("1_cx7bj")
 player = NodePath("player")
@@ -68,6 +77,11 @@ color = Color(0, 0, 0, 1)
 tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAABAAMAAAAAAAAAAAACAAMAAAABAAAAAAADAAMAAAABAAAAAAADAAIAAAAAAAAAAAADAAEAAAAEAAAAAAAEAAEAAAAEAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAABAAAAAAAFAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAAAAAAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAQAAAABAAAAAAAAAAUAAAAAAAAAAAAAAAYAAAABAAAAAAABAAAAAAADAAAAAAABAAEAAAAEAAAAAAABAAQAAAAAAAAAAAABAAUAAAABAAAAAAABAAYAAAAAAAAAAAACAAAAAAADAAAAAAACAAEAAAAEAAAAAAACAAIAAAAAAAAAAAACAAQAAAAAAAAAAAACAAUAAAAAAAAAAAACAAYAAAABAAAAAAADAAAAAAADAAAAAAADAAQAAAAAAAAAAAADAAUAAAAAAAAAAAADAAYAAAABAAAAAAAEAAAAAAADAAAAAAAEAAIAAAAAAAAAAAAEAAMAAAABAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAAAAAADAAAAAAAFAAQAAAABAAAAAAAFAAUAAAAAAAAAAAAFAAYAAAABAAAAAAAGAAAAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAABAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAHAAAAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAQAAAAAAAAAAAAHAAUAAAAAAAAAAAAHAAYAAAAAAAAAAAAIAAAAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAABAAAAAAAIAAQAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAABAAAAAAAJAAAAAAADAAAAAAAJAAEAAAAEAAAAAAAJAAIAAAABAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAABAAAAAAAJAAUAAAAAAAAAAAAJAAYAAAABAAAAAAAKAAAAAAADAAAAAAAKAAEAAAAEAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAALAAAAAAADAAAAAAALAAEAAAAEAAAAAAALAAIAAAABAAAAAAALAAMAAAAAAAAAAAALAAQAAAABAAAAAAALAAUAAAAAAAAAAAALAAYAAAAAAAAAAAAMAAAAAAADAAAAAAAMAAEAAAAEAAAAAAAMAAIAAAABAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAABAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAANAAAAAAADAAAAAAANAAEAAAAEAAAAAAANAAIAAAABAAAAAAANAAMAAAABAAAAAAANAAQAAAAAAAAAAAANAAUAAAAAAAAAAAANAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_xqllj")
 
+[node name="TextureRect" type="TextureRect" parent="backgroundLayer"]
+offset_right = 1792.0
+offset_bottom = 249.0
+texture = SubResource("GradientTexture2D_57smy")
+
 [node name="trapLayer" type="TileMapLayer" parent="."]
 z_index = 1
 tile_map_data = PackedByteArray("AAADAAIAAAACAAAAAAAEAAUAAAACAAAAAAAIAAMAAAACAAAAAAA=")
@@ -82,14 +96,21 @@ tile_set = SubResource("TileSet_xqllj")
 z_index = -1
 position = Vector2(576, 448)
 
+[node name="Carpet2" parent="objLayer" instance=ExtResource("5_lcd7o")]
+z_index = -1
+position = Vector2(576, 576)
+
 [node name="FanDown" parent="objLayer" instance=ExtResource("3_ve5ut")]
 position = Vector2(576, 320)
+
+[node name="FanUp" parent="objLayer" instance=ExtResource("6_vadbu")]
+position = Vector2(192, 704)
 
 [node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("1_cf133")]
 z_index = 1
 position = Vector2(191, 511)
 collision_layer = 1
-action = NodePath("..")
+action = NodePath("")
 tilemap = NodePath("../objLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -105,6 +126,7 @@ position_smoothing_enabled = true
 
 [node name="Room" type="StaticBody2D" parent="."]
 z_index = 1
+position = Vector2(0, 249)
 script = ExtResource("4_lcd7o")
-size = Vector2i(1792, 896)
+size = Vector2i(1792, 646)
 metadata/_custom_type_script = "uid://d3q036pdl3epk"

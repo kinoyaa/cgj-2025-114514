@@ -49,6 +49,10 @@ func _ready() -> void:
 	GameCore.player = self
 	make_inside()
 	set_process(debug_draw)
+	step_over.connect(
+		func():
+			print("step")
+	)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"walk"):
@@ -60,14 +64,24 @@ func _physics_process(delta: float) -> void:
 		_keep_walk(delta)
 		# 右侧障碍物检测
 		var cell_data = tilemap.get_cell_tile_data(_local_to_tilemap() + Vector2i.RIGHT)
+		var target = _local_to_tilemap() + current_direction
 		if cell_data and cell_data.get_custom_data("type") == "carpet":
 			state = State.IDLE
 			make_inside()
-		for node : Node2D in action.fan_blow_able:
-			if _local_to_tilemap() + Vector2i.RIGHT == tilemap.local_to_map(node.global_position):
-				if node.type != Fan.Carpet.CarpetType.EXPAND:
+		for node : Node2D in action.obj_layer.get_children():
+			if target == tilemap.local_to_map(node.global_position):
+				# 障碍检测
+				if node is Carpet:
+					if node.type != Fan.Carpet.CarpetType.EXPAND:
+						state = State.IDLE
+						make_inside()
+				if node is Fan:
 					state = State.IDLE
 					make_inside()
+		# 不能超出背景没刷的地方
+		if action.background_layer.get_cell_source_id(target) == -1:
+			state = State.IDLE
+			make_inside()
 	elif state == State.IDLE && current_anim_name != "Idle":
 		# 只在需要时设置空闲动画
 		set_anim(Vector2i.ZERO, "Idle")
