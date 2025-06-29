@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=22 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -41,6 +41,11 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 corner_detail = 5
+
+[sub_resource type="Environment" id="Environment_ytxhq"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 1.42
 
 [node name="title_scene" type="Control"]
 layout_mode = 3
@@ -179,7 +184,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -205,7 +210,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -231,7 +236,7 @@ offset_top = 6.464737
 offset_bottom = 12.92952
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1e-05, 1)
+scale = Vector2(0.001, 1)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qtecu")
 
@@ -355,6 +360,9 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ytxhq")
 
 [connection signal="pressed" from="setting_btn" to="." method="_on_setting_btn_pressed"]
 [connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]
