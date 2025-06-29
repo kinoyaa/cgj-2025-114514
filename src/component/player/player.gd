@@ -49,10 +49,6 @@ func _ready() -> void:
 	GameCore.player = self
 	make_inside()
 	set_process(debug_draw)
-	step_over.connect(
-		func():
-			print("step")
-	)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed(&"walk"):
