@@ -1,11 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://cq172ohp7raos"]
+[gd_scene load_steps=20 format=3 uid="uid://cq172ohp7raos"]
 
 [ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_1p2jo"]
 [ext_resource type="PackedScene" uid="uid://cmr0ldbxnrb8s" path="res://src/scene/example/example.tscn" id="1_6pe3w"]
 [ext_resource type="Shader" uid="uid://5wmo1fc4nhb2" path="res://src/assets/shader/circular_transition.gdshader" id="2_giqa4"]
+[ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="2_n5xo1"]
+[ext_resource type="AudioStream" uid="uid://cptttig8t2h8d" path="res://src/assets/se/confirm.ogg" id="3_ohyg8"]
+[ext_resource type="AudioStream" uid="uid://dk04ofjghewaw" path="res://src/assets/se/error.ogg" id="4_mdkfe"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="6_4d420"]
 [ext_resource type="PackedScene" uid="uid://bnmx16dsovav1" path="res://src/ui/camera_slider/camera_slider.tscn" id="6_u5mvd"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="7_01q62"]
+[ext_resource type="Texture2D" uid="uid://c4gsu0t1bsd41" path="res://src/assets/icons/setting.svg" id="7_o6vph"]
+[ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="8_eqrv6"]
+[ext_resource type="Texture2D" uid="uid://bwcyvg5wa65rp" path="res://src/assets/icons/continue.svg" id="9_j8f6a"]
+[ext_resource type="Texture2D" uid="uid://x3w5pk8ldp5p" path="res://src/assets/icons/retry.svg" id="10_n5xo1"]
+[ext_resource type="Texture2D" uid="uid://bc2n50rx73pu0" path="res://src/assets/icons/quit.svg" id="11_ohyg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
 shader = ExtResource("2_giqa4")
@@ -22,7 +30,21 @@ glow_enabled = true
 glow_intensity = 5.1
 glow_strength = 1.25
 
-[node name="Main" type="Control" node_paths=PackedStringArray("level_vp")]
+[sub_resource type="Gradient" id="Gradient_kybrk"]
+colors = PackedColorArray(1, 1, 1, 0.585, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mdkfe"]
+gradient = SubResource("Gradient_kybrk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6jha"]
+shader = ExtResource("8_eqrv6")
+shader_parameter/strength = 3.3
+shader_parameter/mix_percentage = 0.3
+
+[node name="Main" type="Control" node_paths=PackedStringArray("level_vp", "content_scene")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +53,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1p2jo")
 level_vp = NodePath("SubViewportContainer/level_vp")
+content_scene = NodePath("SubViewportContainer/level_vp/Example")
+cursor_sound = ExtResource("2_n5xo1")
+click_sound = ExtResource("3_ohyg8")
+retryOrQuit_sound = ExtResource("4_mdkfe")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -129,5 +155,118 @@ viewport = NodePath("../../../SubViewportContainer/level_vp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_csug5")
+
+[node name="menu" type="TextureButton" parent="." groups=["btn"]]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = 40.0
+offset_right = -37.0
+offset_bottom = 98.0
+texture_normal = ExtResource("7_o6vph")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="menu"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mdkfe")
+
+[node name="menu_layer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="background" type="ColorRect" parent="menu_layer"]
+material = SubResource("ShaderMaterial_n6jha")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu_layer/background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -71.0
+offset_right = 20.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="continue" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("9_j8f6a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/continue"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mdkfe")
+
+[node name="retry" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture_normal = ExtResource("10_n5xo1")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/retry"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mdkfe")
+
+[node name="quit" type="TextureButton" parent="menu_layer/background/HBoxContainer" groups=["btn"]]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+texture_normal = ExtResource("11_ohyg8")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="hovering_fx" type="TextureRect" parent="menu_layer/background/HBoxContainer/quit"]
+visible = false
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mdkfe")
 
 [connection signal="gameover" from="SubViewportContainer/level_vp/Example" to="." method="_on_example_gameover"]
