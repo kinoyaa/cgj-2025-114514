@@ -5,7 +5,7 @@ static var UNPASSABLE := [Fan]
 signal died
 
 # 调试开关
-@export var debug_draw: bool = true
+@export var debug_draw: bool = false
 
 # 配置参数
 @export var speed: float = 200.0
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 					make_inside()
 		# 不能超出背景没刷的地方
 		if action.background_layer.get_cell_source_id(target) == -1:
-			state = State.IDLE
+			state = State.WALKING
 			make_inside()
 	elif state == State.FLOATING && !is_blown_by_fan:
 		# 如果处于漂浮状态但没有被风扇吹动，则切换到空闲状态

@@ -5,6 +5,9 @@ extends "res://src/component/base_scene/base_scene.gd"
 func get_setting_popup():
 	return $setting_popup
 
+func _ready() -> void:
+	music_manager.set_bgm(load("res://src/assets/bgm/MUSIC.mp3"))
+
 
 func _on_setting_btn_pressed() -> void:
 	setting_popup.open()

@@ -35,6 +35,7 @@ func _ready() -> void:
 	set_process(true)
 	
 	player.died.connect(_on_player_died)
+	music_manager.set_bgm(load("res://src/assets/bgm/bgm.mp3"))
 
 func _connect_signal():
 	# FAN 可被吹动
@@ -90,7 +91,7 @@ func _input(event: InputEvent) -> void:
 				# 节点形式的
 				if target_object is Node:
 					if target_object is Carpet:
-						if carpet_can_puton(pull_target):
+						if carpet_can_puton(pull_target) and player._local_to_tilemap() != obj_layer.local_to_map(target_object.global_position):
 							target_object.move(pull_direction,false)
 							match target_object.type:
 								Fan.Carpet.CarpetType.EXPAND:

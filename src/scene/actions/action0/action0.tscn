@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cov3robrvf7px"]
+[gd_scene load_steps=21 format=3 uid="uid://cov3robrvf7px"]
 
 [ext_resource type="Script" uid="uid://cx2epgspodiiq" path="res://src/scene/main_scene/main.gd" id="1_phe6f"]
 [ext_resource type="PackedScene" uid="uid://guytleeix8ip" path="res://src/scene/actions/action1/action1.tscn" id="2_semsx"]
@@ -10,8 +10,11 @@
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="8_8jl8i"]
 [ext_resource type="FontFile" uid="uid://bibl7w4rm6dt1" path="res://src/Fonts/BTH.TTF" id="9_v268o"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="10_x8knj"]
+[ext_resource type="Texture2D" uid="uid://b5ev2gjq3ox6y" path="res://src/assets/imgs/tips0.png" id="11_4kicx"]
+[ext_resource type="Shader" uid="uid://3ahj8v5f0iu1" path="res://src/assets/shader/shake.gdshader" id="11_bo2eo"]
 [ext_resource type="Environment" uid="uid://o81x6qjhqxd4" path="res://src/fx/environment.tres" id="11_y3xyr"]
 [ext_resource type="Texture2D" uid="uid://diw3iffc63532" path="res://src/assets/icons/menu.png" id="12_k2o6u"]
+[ext_resource type="Texture2D" uid="uid://cxhpp7utp2bul" path="res://src/assets/imgs/tips3.png" id="12_kxjg1"]
 [ext_resource type="PackedScene" uid="uid://dawv1x20rahhp" path="res://src/ui/menu_layer/menu_layer.tscn" id="13_wa2oa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p2jo"]
@@ -21,6 +24,12 @@ shader_parameter/feather = 0.05
 shader_parameter/circle_position = Vector2(0.5, 0.5)
 shader_parameter/screen_width = 1920.0
 shader_parameter/screen_height = 1080.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6onv"]
+shader = ExtResource("11_bo2eo")
+shader_parameter/amplitude = 1.47
+shader_parameter/speed = 0.001
+shader_parameter/frequency = 0.76
 
 [sub_resource type="Gradient" id="Gradient_frdr3"]
 colors = PackedColorArray(1, 1, 1, 0.585, 0, 0, 0, 0)
@@ -93,30 +102,6 @@ metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MouseAvoidText" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 41.0
-offset_right = 215.0
-offset_bottom = 581.0
-size_flags_vertical = 3
-mouse_filter = 2
-script = ExtResource("8_8jl8i")
-text = "操作提示
-
-单击鼠标右键
-开始移动
-
-再按一下可
-停下"
-font = ExtResource("9_v268o")
-font_size = 32
-alignment = 1
-vertical_alignment = 1
-avoid_radius = 150.0
-metadata/_custom_type_script = "uid://cjilub4hjm20c"
-
 [node name="MouseAvoidText3" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 12
@@ -129,7 +114,7 @@ grow_vertical = 0
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("8_8jl8i")
-text = "\"该起床了\""
+text = "\"守梦之屋\""
 font = ExtResource("9_v268o")
 font_size = 76
 alignment = 1
@@ -153,6 +138,32 @@ alignment = 1
 vertical_alignment = 1
 avoid_radius = 150.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_v6onv")
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 229.0
+offset_right = 218.0
+offset_bottom = -282.0
+grow_vertical = 2
+texture = ExtResource("11_4kicx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_v6onv")
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 1068.0
+offset_top = 242.0
+offset_right = 1277.0
+offset_bottom = -269.0
+grow_vertical = 2
+texture = ExtResource("12_kxjg1")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("11_y3xyr")
