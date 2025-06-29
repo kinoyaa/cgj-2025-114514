@@ -48,8 +48,8 @@ sources/1 = SubResource("TileSetScenesCollectionSource_5i3b0")
 
 [sub_resource type="Gradient" id="Gradient_55fax"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.4947589, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.41509435, 0.41509435, 0.41509435, 0.5849056, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.494759, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.415094, 0.415094, 0.415094, 0.584906, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_57smy"]
 gradient = SubResource("Gradient_55fax")
@@ -110,7 +110,7 @@ position = Vector2(192, 704)
 z_index = 1
 position = Vector2(191, 511)
 collision_layer = 1
-action = NodePath("")
+action = NodePath("..")
 tilemap = NodePath("../objLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -10,13 +10,13 @@
 [ext_resource type="Script" uid="uid://d3q036pdl3epk" path="res://src/component/room/room.gd" id="9_aowqx"]
 
 [sub_resource type="Gradient" id="Gradient_1h743"]
-offsets = PackedFloat32Array(0, 0.56302524)
+offsets = PackedFloat32Array(0, 0.563025)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_61d4j"]
 gradient = SubResource("Gradient_1h743")
 fill = 1
-fill_from = Vector2(0.4884005, 0.53601956)
+fill_from = Vector2(0.4884, 0.53602)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5i3b0"]
 texture = ExtResource("2_uha4h")
@@ -57,8 +57,8 @@ sources/1 = SubResource("TileSetScenesCollectionSource_5i3b0")
 
 [sub_resource type="Gradient" id="Gradient_55fax"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.4947589, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.41509435, 0.41509435, 0.41509435, 0.5849056, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.494759, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.415094, 0.415094, 0.415094, 0.584906, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_57smy"]
 gradient = SubResource("Gradient_55fax")
@@ -66,7 +66,7 @@ fill_to = Vector2(0, 1)
 
 [node name="action1content" type="CanvasModulate" node_paths=PackedStringArray("player", "background_layer", "trap_layer", "obj_layer", "room", "camera")]
 y_sort_enabled = true
-color = Color(0.6878065, 0.6878065, 0.68780655, 1)
+color = Color(0.687806, 0.687806, 0.687807, 1)
 script = ExtResource("1_lj4dc")
 player = NodePath("player")
 background_layer = NodePath("backgroundLayer")
@@ -78,7 +78,7 @@ camera = NodePath("Camera2D")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(232, 132)
 scale = Vector2(5.6875, 5.6875)
-color = Color(0.54509807, 1, 1, 1)
+color = Color(0.545098, 1, 1, 1)
 texture = SubResource("GradientTexture2D_61d4j")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -107,11 +107,10 @@ z_index = 2
 y_sort_enabled = true
 tile_set = SubResource("TileSet_xqllj")
 
-[node name="player" parent="." node_paths=PackedStringArray("action", "tilemap") instance=ExtResource("8_m4xii")]
+[node name="player" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("8_m4xii")]
 z_index = 1
 position = Vector2(192, 439)
 collision_layer = 1
-action = NodePath("")
 tilemap = NodePath("../objLayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
