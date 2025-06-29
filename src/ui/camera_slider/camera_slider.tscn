@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdn58ymnethma" path="res://src/ui/camera_slider/camera_slider.gd" id="1_7ipta"]
 
 [node name="camera_slider" type="HSlider"]
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

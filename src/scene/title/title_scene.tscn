@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://f4jpf1a1j1wi"]
+[gd_scene load_steps=26 format=3 uid="uid://f4jpf1a1j1wi"]
 
 [ext_resource type="Script" uid="uid://iap5nsa33os4" path="res://src/scene/title/title_scene.gd" id="1_5o2ak"]
 [ext_resource type="Texture2D" uid="uid://f8m5bt07j6fm" path="res://src/assets/imgs/title_scene/picture.png" id="1_7ipjn"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://b1lhdwdvjpp72" path="res://src/assets/se/cursor.ogg" id="11_ytxhq"]
 [ext_resource type="Texture2D" uid="uid://j2d26guv57qh" path="res://src/assets/imgs/title_scene/exit_btn.png" id="13_fsaq4"]
 [ext_resource type="Shader" uid="uid://ccw0eou6bonja" path="res://src/scene/title/blur.gdshader" id="14_bjufa"]
+[ext_resource type="AudioStream" uid="uid://bfy2ibvqqb8sb" path="res://src/assets/se/cancel2.ogg" id="14_lqg17"]
 [ext_resource type="Script" uid="uid://cjilub4hjm20c" path="res://src/ui/MouseAvoidText/mouse_avoid_text.gd" id="15_14e8x"]
 [ext_resource type="FontFile" uid="uid://b1qtvn4yalht6" path="res://src/Fonts/songti.ttf" id="16_ytxhq"]
 
@@ -22,7 +23,7 @@ blend_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qtecu"]
 bg_color = Color(1, 1, 1, 1)
-shadow_color = Color(0.45882353, 0.47843137, 0.63529414, 1)
+shadow_color = Color(0.458824, 0.478431, 0.635294, 1)
 shadow_size = 5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14e8x"]
@@ -41,6 +42,21 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 corner_detail = 5
+
+[sub_resource type="Gradient" id="Gradient_ytxhq"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lqg17"]
+gradient = SubResource("Gradient_ytxhq")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfflm"]
+font_size = 32
 
 [sub_resource type="Environment" id="Environment_ytxhq"]
 background_mode = 3
@@ -109,7 +125,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -108.44446
+offset_left = -108.444
 offset_top = -61.0
 offset_right = 144.0
 offset_bottom = 81.0
@@ -165,9 +181,9 @@ texture = ExtResource("8_bjufa")
 [node name="start_btn" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 160.0
-offset_top = 417.00003
+offset_top = 417.0
 offset_right = 624.0
-offset_bottom = 481.00003
+offset_bottom = 481.0
 scale = Vector2(0.667, 0.667)
 texture_normal = ExtResource("9_14e8x")
 script = ExtResource("9_qtecu")
@@ -180,8 +196,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 6.464737
-offset_bottom = 12.92952
+offset_top = 6.46474
+offset_bottom = 12.9295
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.001, 1)
@@ -206,8 +222,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 6.464737
-offset_bottom = 12.92952
+offset_top = 6.46474
+offset_bottom = 12.9295
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.001, 1)
@@ -232,8 +248,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 6.464737
-offset_bottom = 12.92952
+offset_top = 6.46474
+offset_bottom = 12.9295
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.001, 1)
@@ -249,6 +265,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_ihmu6")
+close_sound = ExtResource("14_lqg17")
 
 [node name="ColorRect" type="ColorRect" parent="setting_popup"]
 material = SubResource("ShaderMaterial_14e8x")
@@ -288,25 +305,25 @@ grow_horizontal = 0
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 80.0
+offset_left = 160.0
 offset_top = 60.0
-offset_right = -24.0
+offset_right = -80.0
 offset_bottom = 16.0
 grow_horizontal = 2
 max_value = 1.0
-step = 0.01000000000931322
+step = 0.01
 
 [node name="music_slider" type="HSlider" parent="setting_popup/panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-offset_left = 80.0
+offset_left = 160.0
 offset_top = 120.0
-offset_right = -24.0
+offset_right = -80.0
 offset_bottom = 16.0
 grow_horizontal = 2
 max_value = 1.0
-step = 0.01000000000931322
+step = 0.01
 
 [node name="apply_btn" type="TextureButton" parent="setting_popup/panel"]
 layout_mode = 1
@@ -333,7 +350,43 @@ font_size = 25
 font_color = Color(0, 0, 0, 1)
 alignment = 1
 vertical_alignment = 1
+avoid_radius = 32.0
+max_offset = 8.0
 metadata/_custom_type_script = "uid://cjilub4hjm20c"
+
+[node name="Circle" type="TextureRect" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 30.0
+offset_top = 60.0
+texture = SubResource("GradientTexture2D_lqg17")
+
+[node name="Circle2" type="TextureRect" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 30.0
+offset_top = 120.0
+texture = SubResource("GradientTexture2D_lqg17")
+
+[node name="Label" type="Label" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 60.0
+offset_top = 46.0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "音效"
+label_settings = SubResource("LabelSettings_kfflm")
+
+[node name="Label2" type="Label" parent="setting_popup/panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 60.0
+offset_top = 106.0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "音乐"
+label_settings = SubResource("LabelSettings_kfflm")
 
 [node name="level_popup" type="Control" parent="."]
 visible = false
@@ -366,5 +419,6 @@ environment = SubResource("Environment_ytxhq")
 
 [connection signal="pressed" from="setting_btn" to="." method="_on_setting_btn_pressed"]
 [connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]
+[connection signal="gui_input" from="setting_popup/ColorRect" to="setting_popup" method="_on_color_rect_gui_input"]
 [connection signal="pressed" from="setting_popup/panel/close_btn" to="setting_popup" method="_on_close_btn_pressed"]
 [connection signal="pressed" from="setting_popup/panel/apply_btn" to="setting_popup" method="_on_apply_btn_pressed"]
